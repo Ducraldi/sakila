@@ -1,0 +1,9 @@
+Mi pagina web: duqui.000webhostapp.com
+
+Conexion FTP
+
+servidor:  files.000webhost.com
+nombre usuario: duqui
+contraseña: dubaldycom24
+
+Informacion de Base de datos
