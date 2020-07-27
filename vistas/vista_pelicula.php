@@ -15,7 +15,7 @@
                     <form class="lolo" action="pelicula.php" method="post">
                         <div class="mb-3">
                             <label for="tituloPelicula">Titulo de la Pelicula </label>
-                            <input type="text" name="tituloPelicula" id="tituloPelicula" class="form-control">
+                            <input type="text" placeholder="Digite la Pelicula "name="tituloPelicula" id="tituloPelicula" class="form-control">
                         </div>
 
                         <div class="mb-3">
@@ -24,14 +24,23 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="lanzamientoPelicula">Lanzamiento de la Pelicula</label>
-                            <input type="text" name="lanzamientoPelicula" id="lanzamientoPelicula" class="form-control">
+                            <label for="lanzamientoPelicula" class="form-label">Año de lanzamiento ... </label>
+                            <input type="text" list="listadoAnos" placeholder="Digite e año de lanzamiento " name="lanzamientoPelicula" id="lanzamientoPelicula" class="form-control">
+                            <datalist id="listadoAnos">
+                                <?php
+
+                                for ($year = date("Y"); $year >= 1900; $year--){
+                                    echo "<option value=\"{$year}\">";
+                                }
+
+                                ?>
+                            </datalist>
                         </div>
 
                         <div class="mb-3">
                             <label for="lenguajePelicula">Lenguaje de la Pelicula</label>
                             <select name="lenguajePelicula" id="lenguajePelicula" class="custom-select">
-                                <option value="">Aqui va el Lenguaje de la Pelicula dede SQL</option>
+                                <option value="">Lenguajes de la Peliculas</option>
 
                                 <?php
 
@@ -56,8 +65,33 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="specialPelicula">Especiales de Peliculas </label>
-                            <input type="text" name="specialPelicula" id="specialPelicula" class="form-control">
+                            <label for="clasificacionlPelicula" class="form-label">Clasificacion de la Pelicula</label>
+                            <select name="clasificacionlPelicula" id="clasificacionlPelicula" class="custom-select">
+                                <option value="">clasificacionlPeliculade la Pelicula </option>
+                                <?php
+                                $clasificaciones = ['G', 'PG', 'PG-13', 'R','NC-17'];
+                                foreach ($clasificaciones as $reting){
+                                    echo "<option value=\"{$reting}\">{$reting}</option>";
+
+                                }
+                                ?>
+                            </select>
+
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="especialPelicula">Especiales de Peliculas </label>
+                            <select name="especialPelicula[]" id="especialPelicula" class="custom-select" multiple>
+                                <option value="">Elige una o mas Caracteristica  </option>
+                                <?php
+                                $caracteristicas = ['Trailers', 'Commentaries', 'Deleted Scenes', 'Behind the Scenes'];
+                                foreach ($caracteristicas as $caracteristica){
+                                    echo "<option value=\"{$caracteristica}\">{$caracteristica}</option>";
+
+                                }
+                                ?>
+                            </select>
                         </div>
 
                         <div class="mb-3">

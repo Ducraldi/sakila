@@ -77,8 +77,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="contrasenaPersonal">Contraseña del Personal</label>
-                                <input value="<?= $contrasenaPersonal ?>" type="password" name="contrasenaPersonal"
+                                <label for="contrasenaPersonal" class="sr-only">Contraseña del Personal</label>
+                                <input value="<?= $contrasenaPersonal ?>" placeholder="Contraceña" type="password" name="contrasenaPersonal"
                                        id="contrasenaPersonal" class="form-control">
                             </div>
 

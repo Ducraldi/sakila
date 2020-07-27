@@ -33,7 +33,7 @@ try {// asegurarno del que usuario alga hecho click en el boton
 
         // lanzar un error si no se inserto correctamente
         if (!$actorIncertado) {
-            throw new Exception("Ocurrio un error al insertar los datos del actor");
+            throw new Exception("Ocurrio uun error al insertar los datos del actor");
         }
 
         // Redicionar la pagina
