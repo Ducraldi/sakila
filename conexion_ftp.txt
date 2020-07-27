@@ -4,6 +4,11 @@ Conexion FTP
 
 Servidor:  files.000webhost.com
 Nombre usuario: duqui
-Contraseña: dubaldycom24
+Contraseña: D8097523386
 
 Informacion de Base de datos
+
+nombre base de datos: id12550977_sakila
+host: localhost
+Usuario: id12550977_ducraldi_000webhost
+Contrasena: MHE?iiLSoV{iJQO5

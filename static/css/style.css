@@ -1,0 +1,26 @@
+/* esto va en el body */
+.inci {
+    background-image: url("../imagenes/fondo3.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: "Times New Roman", serif;
+    text-align: left;
+}
+
+.lili {
+    font-family: "Arial Black";
+    font-size: 50px;
+    color: white;
+    background-color: #002cff;
+
+}
+
+.lolo:hover {
+    color: orange;
+    background-color: rgba(0, 0, 0, 0.37);
+}
+
+.colorTabla {
+    color: white;
+}
