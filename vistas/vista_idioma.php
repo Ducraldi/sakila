@@ -1,7 +1,6 @@
 <?php include_once "partes/parte_head.php" ?>
-
 <body class="inci">
-<<?php include_once "partes/parte_menu_principal.php" ?>
+<?php include_once "partes/parte_menu_principal.php" ?>
 <br>
 <div class="container-fluid">
     <div class="row">
@@ -11,24 +10,74 @@
         <div class="col-md-10">
             <h3><?php echo "$nombrePagina"; ?></h3>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-10">
                     <form action="idioma.php" method="post">
                         <div class="col-md-3">
                             <div class="mb-3">
                                 <label for="nombreIdioma">Buscar por el idioma</label>
-                                <input type="text" name="nombreIdioma" id="nombreIdioma" class="form-control">
+                                <input type="text" name="nombreIdioma" id="nombreIdioma" value="<?= $nombreIdioma ?>" class="form-control">
                             </div>
 
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary" name="guardar_idioma">Buscar Datos
+                                <button type="submit" class="btn btn-primary" name="guardar_idioma"><i class="fas fa-save"> Enviar</i>
                                 </button>
                             </div>
                         </div>
                     </form>
+                    <?php
+                    if (isset($error)) {
+                        echo "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+                                {$error}
+                                 <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                    <span aria-hidden=\"true\">&times;</span>
+                                  </button>
+                                </div>";
+                    }
+
+                    if (isset($mensaje)) {
+                        echo "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+                                  {$mensaje}
+                                 <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                                    <span aria-hidden=\"true\">&times;</span>
+                                  </button>
+                                </div>";
+                    }
+                    ?>
                 </div>
             </div>
+            <hr>
+            <?php
+            if (empty($lenguajes)) {
+                include_once "partes/parte_empty.php";
+            } else { ?>
+            <div class="row">
+                <div class="colorTabla col-md-12">
+                    <table class="table table-sm table-dark">
+                        <thead>
+                        <tr class=>
+                            <th scope="col">ID</th>
+                            <th scope="col">Idioma</th>
+                            <th scope="col">Fecha</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <?php
+
+                        foreach ($lenguajes as $lenguaje) {
+
+                            echo "<tr class=\"bg-secondary\">
+                              <th scope=\"row\">{$lenguaje['language_id']}</th>
+                              <td>" . ucwords(strtolower($lenguaje['name'])) . "  </td>  
+                              <td>{$lenguaje['fecha']}</td>     
+                          </tr>";
+                        }
+                        ?>
+                        </tbody>
+                    </table>
         </div>
     </div>
+     <?php } ?>
 </div>
 </body>
 </html>

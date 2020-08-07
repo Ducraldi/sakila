@@ -14,9 +14,9 @@
                 <div class="col-md-5">
                     <form action="tienda.php" method="post">
                         <div class="mb-3">
-                            <label for="gerenteTienda">Gerente de la tienda</label>
+                            <label for="gerenteTienda">Personal de la tienda</label>
                             <select name="gerenteTienda" id="gerenteTienda" class="custom-select">
-                                <option value="">Aqui va la Gerente de la tienda desde SQL</option>
+                                <option value="">Selecciones el Personal de la tienda</option>
 
                                 <?php
 
@@ -31,13 +31,13 @@
                         <div class="mb-3">
                             <label for="direccionTienda">Direccion de la Tienda</label>
                             <select name="direccionTienda" id="direccionTienda" class="custom-select">
-                                <option value="">Aqui va la Direccion de la tienda desde SQL</option>
+                                <option value="">Seleccione Direccion de la tienda </option>
 
                                 <?php
 
-                                foreach ($direccionesTiendas as $direcciones) {
+                                foreach ($todasDireccioens as $direcciones) {
 
-                                    echo "<option value=\"{$direcciones["store_id"]}\">{$direcciones["address_id"]}</option>";
+                                    echo "<option value=\"{$direcciones["address_id"]}\">{$direcciones["address"]}</option>";
                                 }
                                 ?>
 
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" name="guardar_tienda" class="btn btn-primary">Enviar Datos
+                            <button type="submit" name="guardar_tienda" class="btn btn-primary"><i class="fas fa-save"> Enviar</i>
                             </button>
                         </div>
                     </form>
@@ -69,9 +69,11 @@
                     }
                     ?>
                 </div>
-
-
             </div>
+            <?php
+            if (empty($datosTienda)) {
+                include_once "partes/parte_empty.php";
+            } else { ?>
 
             <div class="row">
                 <div class="colorTabla col-md-12">
@@ -79,8 +81,9 @@
                         <thead>
                         <tr class=>
                             <th scope="col">ID</th>
-                            <th scope="col">Gerentes</th>
-                            <th scope="col">direccion</th>
+                            <th scope="col">Personales</th>
+                            <th scope="col">Direccion</th>.
+                            <th scope="col">Fechas</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -88,10 +91,11 @@
 
                         foreach ($datosTienda as $tienda) {
 
-                            echo "<tr class=\"bg-primary\">
+                            echo "<tr class=\"bg-secondary\">
                               <th scope=\"row\">{$tienda['store_id']}</th>
-                              <td>{$tienda['first_name']}</td>
+                              <td>" . ucwords(strtolower($tienda['first_name'])) . "</td>
                               <td>{$tienda['address']}</td>
+                              <td>{$tienda['fecha']}</td>
                           </tr>";
                         }
                         ?>
@@ -99,6 +103,7 @@
                     </table>
                 </div>
             </div>
+            <?php } ?>
         </div>
     </div>
 </div>

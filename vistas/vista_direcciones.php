@@ -9,7 +9,6 @@
         </div>
         <div class="col-md-10">
             <h3><?php echo "$nombrePagina"; ?></h3>
-
             <div class="row">
                 <div class="col-md-5">
                     <form action="direcciones.php" method="post">
@@ -35,17 +34,11 @@
                             <label for="ciudad">Tu Ciudad </label>
                             <select name="ciudad" id="ciudad" class="custom-select">
                                 <option value="<?= $ciudad ?>">Aqui va el listado de la ciudad dede SQL</option>
-
                                 <?php
-
                                 foreach ($ciudades as $ciudad) {
                                     echo "<option value=\"{$ciudad["city_id"]}\">{$ciudad["city"]}</option>";
-
                                 }
-
                                 ?>
-
-
                             </select>
                         </div>
 
@@ -62,16 +55,9 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="localisacion">Tu Localisacion </label>
-                            <input value="<?= $localisacion ?>" type="text" name="localisacion" id="localisacion"
-                                   class="form-control">
-                        </div>
-
-                        <div class="mb-3">
                             <label for="guardar_direccion"></label>
                             <button type="submit" name="guardar_direccion" id="guardar_direccion"
-                                    class="btn btn-primary">Enviar
-                            </button>
+                                    class="btn btn-primary"><i class="fas fa-save"> Enviar</i></button>
                         </div>
                     </form>
                     <?php
@@ -83,7 +69,6 @@
                                   </button>
                                 </div>";
                     }
-
                     if (isset($mensaje)) {
                         echo "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
                                   {$mensaje}
@@ -93,45 +78,48 @@
                                 </div>";
                     }
                     ?>
+                    <hr>
                 </div>
-            </div>
+            </div
         </div>
-    </div>
-</div>
-<div class="row">
-    <div class="colorTabla col-md-12">
-        <table class="table table-sm table-dark">
-            <thead>
-            <tr class=>
-                <th scope="col">ID</th>
-                <th scope="col">Direccion</th>
-                <th scope="col">Direccion Numero 2</th>
-                <th scope="col">Distrito</th>
-                <th scope="col">IDCity</th>
-                <th scope="col">Codigo Postal</th>
-                <th scope="col">Telefono</th>
-                <th scope="col">Localisacion</th>
-            </tr>
-            </thead>
-            <tbody>
+        <?php
+        if (empty($todasDirecciones)) {
+            include_once "partes/parte_empty.php";
+        } else { ?>
+        <div class="row">
+            <div class="colorTabla col-md-12">
+                <table class="table table-sm table-dark">
+                    <thead>
+                    <tr class=>
+                        <th scope="col">ID</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Direccion Numero 2</th>
+                        <th scope="col">Distrito</th>
+                        <th scope="col">Id City</th>
+                        <th scope="col">Codigo Postal</th>
+                        <th scope="col">Telefono</th
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
 
-            <?php
+                    foreach ($todasDirecciones as $direcciones) {
 
-            foreach ($todasDirecciones as $direcciones) {
-
-                echo "<tr class=\"bg-primary\">
+                        echo "<tr class=\"bg-secondary\">
                               <th scope=\"row\">{$direcciones['address_id']}</th>      
                               <td>{$direcciones['address']}</td>
                               <td>{$direcciones['address2']}</td>
                               <td>{$direcciones['district']}</td>
                               <td>{$direcciones['city_id']}</td>
                               <td>{$direcciones['postal_code']}</td>
-                              <td>{$direcciones['phone']}</td>    
-                              <td>{$direcciones['location']}</td>                       
+                              <td>{$direcciones['phone']}</td>                 
                           </tr>";
-            }
-            ?>
-            </tbody>
-        </table>
+                    }
+                    ?>
+                    </tbody>
+                </table>
+    </div>
+    <?php } ?>
+</div>
 </body>
 </html>

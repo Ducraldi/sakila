@@ -11,83 +11,81 @@
             <h3><?php echo "$nombrePagina"; ?></h3>
             <div class="row">
                 <div class="col-md-5">
-                    <form action="personal.php" method="post">
+                    <form  class="lolo" action="personal.php" method="post">
                         <div class="mb-3">
                             <label for="nombrePersonal">Nombre del Personal </label>
                             <input value="<?= $nombrePersonal ?>" type="text" name="nombrePersonal" id="nombrePersonal"
                                    class="form-control">
                         </div>
-
                         <div class="mb-3">
                             <label for="apellidoPersonal">Apellido del Personal</label>
                             <input value="<?= $apellidoPersonal ?>" type="text" name="apellidoPersonal"
                                    id="apellidoPersonal" class="form-control">
                         </div>
-
                         <div class="mb-3">
                             <label for="direccionPersonal">Direccion del Personal</label>
                             <select name="direccionPersonal" id="direccionPersonal" class="custom-select">
-                                <option value="$direccionPersonal">Aqui va la Direccion del Personal desde SQL</option>
+                                <option value="$direccionPersonal">Selecciones Direccion del Personal</option>
                                 <?php
 
-                                foreach ($personales as $direcciones) {
+                                foreach ($todaDirecciones as $direcciones) {
 
-                                    echo "<option value=\"{$direcciones["store_id"]}\">{$direcciones["address_id"]}</option>";
+                                    echo "<option value=\"{$direcciones["address_id"]}\">{$direcciones["address"]}</option>";
                                 }
                                 ?>
                             </select>
                         </div>
-
                         <div class="mb-3">
-                            <label for="imagenPersonal">Imagenes del Personal</label>
+                            <label for="imagenPersonal">Pintura del Personal</label>
                             <input value="<?= $imagenPersonal ?>" type="text" name="imagenPersonal" id="imagenPersonal"
-                                   class="form-control">
+                                   class="form-control" placeholder="Escribe el nombre de la pintura">
                         </div>
-
                         <div class="mb-3">
                             <label for="emailPersonal">Escribe el correo del Personal</label>
                             <div class="input-group mb-3">
                                 <input value="<?= $emailPersonal ?>" type="text" name="emailPersonal" id="emailPersonal"
                                        class="form-control"
-                                       placeholder="Escribe tu nombre" aria-label="Recipient's username"
+                                       placeholder="Escribe tu correo electronico" aria-label="Recipient's username"
                                        aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="emailPersonal">@gmail.com</span>
-                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="tiendaPersonal">Tiendas del Personal</label>
-                                <select name="tiendaPersonal" id="tiendaPersonal" class="custom-select">
-                                    <option value="tiendaPersonal">Aqui va la Tienda del Personal desde SQL</option>
-                                    <?php
+                        <div class="mb-3">
+                            <label for="tiendaPersonal">Tiendas del Personal</label>
+                            <select name="tiendaPersonal" id="tiendaPersonal" value="$tiendaPersonal" class="custom-select">
+                                <option value="tiendaPersonal">Selecciones la tienda del Personal</option>
+                                <?php
 
-                                    foreach ($personales as $tiendas) {
-                                        echo "<option value=\"{$tiendas["store_id"]}\">{$tiendas["store_id"]}</option>";
-                                    }
+                                foreach ($personales as $tiendas) {
+                                    echo "<option value=\"{$tiendas["staff_id"]}\">{$tiendas["name"]}</option>";
+                                }
 
-                                    ?>
-                                </select>
-                            </div>
+                                ?>
+                            </select>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="usuarioPersonal">Usuario del Personal</label>
-                                <input value="<?= $usuarioPersonal ?>" type="text" name="usuarioPersonal"
-                                       id="usuarioPersonal" class="form-control">
-                            </div>
+                        <div class="mb-3">
+                            <input type="checkbox" id="activadorPersonal" name="activadorPersonal"
+                                   value="activadorPersonal">
+                            <label for="1">Activo</label><br>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="contrasenaPersonal" class="sr-only">Contraseña del Personal</label>
-                                <input value="<?= $contrasenaPersonal ?>" placeholder="Contraceña" type="password" name="contrasenaPersonal"
-                                       id="contrasenaPersonal" class="form-control">
-                            </div>
+                        <div class="mb-3">
+                            <label for="usuarioPersonal">Usuario del Personal</label>
+                            <input value="<?= $usuarioPersonal ?>" placeholder="Escribe el usuario" type="text" name="usuarioPersonal"
+                                   id="usuarioPersonal" class="form-control">
+                        </div>
 
-                            <div class="mb-3">
-                                <button type="submit" name="guardar_personal" class="btn btn-primary">Enviar Datos
-                                </button>
-                            </div>
+                        <div class="mb-3">
+                            <label for="contrasenaPersonal" class="sr-only">Contraseña del Personal</label>
+                            <input value="<?= $contrasenaPersonal ?>" placeholder="Escribe la contraceña" type="password" name="contrasenaPersonal"
+                                   id="contrasenaPersonal" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" name="guardar_personal" class="btn btn-primary"><i class="fas fa-save"> Enviar</i>
+                            </button>
+                        </div>
                     </form>
-
                     <?php
                     if (isset($error)) {
                         echo "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
@@ -97,7 +95,6 @@
                                   </button>
                                 </div>";
                     }
-
                     if (isset($mensaje)) {
                         echo "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
                                   {$mensaje}
@@ -111,44 +108,57 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="row">
-    <div class="colorTabla col-md-12">
-        <table class="table table-sm table-dark">
-            <thead>
-            <tr class=>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Direccion</th>
-                <th scope="col">Imagen</th>
-                <th scope="col">Email</th>
-                <th scope="col">Tienda</th>
-                <th scope="col">Usuario</th>
-                <th scope="col">Contraceña</th>
-            </tr>
-            </thead>
-            <tbody>
+      
+        <?php
+        // para estar de abajo del rgistro
+        if (empty($personales)) {
+            include_once "partes/parte_empty.php";
+        } else { ?>
+        <div class="row">
+            <div class="colorTabla col-md-12">
+                <table class="table table-sm table-dark">
+                    <thead>
+                    <tr class=>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Direcciones</th>
+                        <th scope="col">Pinturas</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Tiendas</th>
+                        <th scope="col">Activos</th>
+                        <th scope="col">Usuarios</th>
+                        <th scope="col">Contraceñas</th>
+                        <th scope="col">Fechas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
 
-            <?php
-
-            foreach ($personales as $personal) {
-
-                echo "<tr class=\"bg-primary\">
+                        foreach ($personales as $personal) {
+                            if ($personal['active'] == '1') {
+                                $icono = '<i class=\'fas fa-check text-success\'></i> ';
+                            } else {
+                                $icono = '<i class=\'fas fa-times text-danger\'></i>  ';
+                            }
+                               echo "<tr class=\"bg-secondary\">
                               <th scope=\"row\">{$personal['staff_id']}</th>
-                              <td>{$personal['first_name']}</td>
-                              <td>{$personal['last_name']}</td>
-                              <td>{$personal['address_id']}</td>
+                              <td>" . ucwords(strtolower($personal['name'])) . "</td>
+                              <td>{$personal['address']}</td>
                               <td>{$personal['picture']}</td>
                               <td>{$personal['email']}</td>
-                              <td>{$personal['store_id']}</td>
+                              <td>{$personal['first_name']}</td>
+                              <td>{$personal['active']} {$icono}</td>
                               <td>{$personal['username']}</td>
                               <td>{$personal['password']}</td>
+                              <td>{$personal['fecha']}</td>
                           </tr>";
-            }
-            ?>
-            </tbody>
-        </table>
+                    }
+                    ?>
+                    </tbody>
+                </table>
+                <?php } ?>
+    </div>
+</div>
+
 </body>
 </html>

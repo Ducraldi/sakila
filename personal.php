@@ -1,9 +1,11 @@
 <?php
-
-$nombrePagina = "Pesonal";
-require_once "funciones/ayudante.php";
 // Incluid los modelos
 require_once "modelos/modelo_personal.php";
+require_once "modelos/modelo_direcciones.php";
+require_once "funciones/ayudante.php";
+$nombrePagina = "Pesonal";
+
+
 
 
 $nombrePersonal = $_POST['nombrePersonal'] ?? "";
@@ -13,10 +15,11 @@ $imagenPersonal = $_POST['imagenPersonal'] ?? "";
 $emailPersonal = $_POST['emailPersonal'] ?? "";
 $tiendaPersonal = $_POST['tiendaPersonal'] ?? "";
 $usuarioPersonal = $_POST['usuarioPersonal'] ?? "";
+$activarPersonal = $_POST['activarPersonal'] ?? "";
 $contrasenaPersonal = $_POST['contrasenaPersonal'] ?? "";
 
-imprimirArray($_POST);
 // asegurarno del que usuario alga hecho click en el boton
+imprimirArray($_POST);
 
 try {
     if (isset($_POST['guardar_personal'])) {
@@ -55,7 +58,7 @@ try {
             throw new Exception("Escriba su contraceña bien ");
         }
 
-        $datos = compact('nombrePersonal', 'apellidoPersonal', 'direccionPersonal', 'imagenPersonal', 'emailPersonal', 'tiendaPersonal', 'usuarioPersonal', 'contrasenaPersonal');
+        $datos = compact('nombrePersonal', 'apellidoPersonal',  'direccionPersonal', 'imagenPersonal', 'emailPersonal', 'activarPersonal', 'tiendaPersonal', 'usuarioPersonal', 'contrasenaPersonal');
 
 
         $personalIncertado = intesertarPersonal($conexion, $datos);
@@ -73,6 +76,7 @@ try {
     $error = $e->getMessage();
 }
 
+$todaDirecciones = obtenerDirecciones($conexion);
 $personales = obtenerPersonal($conexion);
 
 // incluir la vista

@@ -15,9 +15,6 @@ $distrito = $_POST['distrito'] ?? "";
 $ciudad = $_POST['ciudad'] ?? "";
 $codigoPostal = $_POST['codigoPostal'] ?? "";
 $telefono = $_POST['telefono'] ?? "";
-$localisacion = $_POST['localisacion'] ?? "";
-
-imprimirArray($_POST);
 
 // asegurarno del que usuario alga hecho click en el boton
 try {
@@ -49,11 +46,8 @@ try {
             throw new Exception("El numero de telefono no puede estar vacio");
         }
 
-        if (empty($localisacion)) {
-            throw new Exception("la localisacion no puede estar vacia");
-        }
         // preparar los array con los datos
-        $datos = compact('direccionPrincipal', 'direccionSecundaria', 'distrito', 'ciudad', 'codigoPostal', 'telefono', 'localisacion');
+        $datos = compact('direccionPrincipal', 'direccionSecundaria', 'distrito', 'ciudad', 'codigoPostal', 'telefono');
 
         // insertar datos
         $direccionInsertada = insertarDirecciones($conexion, $datos);

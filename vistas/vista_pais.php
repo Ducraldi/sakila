@@ -18,7 +18,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" name="guardar_pais" class="btn btn-primary">Enviar Datos</button>
+                            <button type="submit" name="guardar_pais" class="btn btn-primary"><i class="fas fa-save"> Enviar</i></button>
                         </div>
                     </form>
                     <?php
@@ -42,6 +42,10 @@
                     ?>
                 </div>
             </div>
+            <?php
+            if (empty($paises)) {
+                include_once "partes/parte_empty.php";
+            } else { ?>
             <div class="row">
                 <div class="colorTabla col-md-12">
                     <table class="table table-sm table-dark">
@@ -58,7 +62,7 @@
 
                         foreach ($paises as $pais) {
 
-                            echo "<tr class=\"bg-primary\">
+                            echo "<tr class=\"bg-secondary\">
                               <th scope=\"row\">{$pais['country_id']}</th>
                               <td>{$pais['country']}</td>
                
@@ -69,6 +73,7 @@
                     </table>
                 </div>
             </div>
+            <?php } ?>
         </div>
 </body>
 </html>

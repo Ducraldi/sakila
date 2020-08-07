@@ -8,7 +8,7 @@ $nombrePagina = "Actores";
 $nombreActor = $_POST['nombreActor'] ?? "";
 $apellidoActor = $_POST['apellidoActor'] ?? "";
 
-imprimirArray($_POST);
+
 try {// asegurarno del que usuario alga hecho click en el boton
     if (isset($_POST['guardar_actor'])) {
         // codigo para guarda base de datos
@@ -39,6 +39,31 @@ try {// asegurarno del que usuario alga hecho click en el boton
         // Redicionar la pagina
         redireccionar("actor.php");
     }
+
+
+    // Asegurarns que el usuario haya echo cick en el boton de eliminar
+    if (isset($_POST['eliminarActor'])) {
+        $idActor = $_POST['eliminarActor'] ?? "";
+        // validar
+        if (empty($idActor)) {
+            throw new Exception("El id de Actor no puede estar vacio");
+        }
+        // preparar array
+        $datos = compact('idActor');
+
+        // eliminar
+        $eliminado = eliminarActores($conexion, $datos);
+        $mensaje = "los datos fueron eliminados correctamente";
+
+        // lanzar error
+        if (! $eliminado ) {
+            throw new Exception("los datos no se eliminaron correctamente");
+        }
+        // Re-direccionar
+         redireccionar("actor.php");
+    }
+
+
 
 } catch (Exception $e) {
     $error = $e->getMessage();

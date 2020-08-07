@@ -9,6 +9,7 @@
         </div>
         <div class="col-md-10">
             <h3><?php echo "$nombrePagina"; ?></h3>
+            <hr>
             <div class="row">
                 <div class="col-md-5">
                     <form action="ciudad.php" method="post">
@@ -20,6 +21,9 @@
 
                         <div class="mb-3">
                             <label for="selecionPais">Seleccione tu pais</label>
+                            <?php if (empty($paises)) {?>
+                            <div class="form-label"><i class="fas fa-info-circle"></i> No hay paises registrados</div>
+                            <?php } else { ?>
                             <select name="selecionPais" id="selecionPais" class="custom-select">
                                 <option value="">Aqui va el listado de la pais dede SQL</option>
                                 <?php
@@ -28,11 +32,13 @@
                                 }
                                 ?>
                             </select>
+                            <?php } ?>
                         </div>
                         <div class="mb-3">
-                            <button type="submit" name="guardar_ciudad" class="btn btn-primary">Enviar Datos</button>
+                            <button type="submit" name="guardar_ciudad" class="btn btn-primary"><i class="fas fa-save"> Enviar</i></button>
                         </div>
                     </form>
+                    <hr>
                     <?php
                     if (isset($error)) {
                         echo "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
@@ -55,6 +61,11 @@
                 </div>
             </div>
 
+            <?php
+            if (empty($ciudades)) {
+                include_once "partes/parte_empty.php";
+            } else { ?>
+
             <div class="row">
                 <div class="colorTabla col-md-12">
                     <table class="table table-sm table-dark">
@@ -70,7 +81,7 @@
 
                         foreach ($ciudades as $ciudad) {
 
-                            echo "<tr class=\"bg-primary\">
+                            echo "<tr class=\"bg-secondary\">
                               <th scope=\"row\">{$ciudad['city_id']}</th>
                               <td>{$ciudad['city']}</td>
                               <td>{$ciudad['country']}</td>
@@ -81,6 +92,7 @@
                     </table>
                 </div>
             </div>
+            <?php } ?>
         </div>
     </div>
 

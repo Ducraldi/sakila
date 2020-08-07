@@ -5,16 +5,16 @@
 
 $paginaMenu = [
     "index"       => ["Inicio", "fas fa-home"],
-    "actor"       => ["Actor", "fas fa-user"],
+    "actor"       => ["Actores", "fas fa-user"],
     "direcciones" => ["Direcciones", "fas fa-map-marker-alt"],
-    "ciudad"      => ["Ciudad", "fas fa-city"],
+    "ciudad"      => ["Ciudades", "fas fa-city"],
     "pais"        => ["País", "fas fa-flag"],
-    "categoria"   => ["Categoria", "fas fa-tag"],
+    "categoria"   => ["Categorias", "fas fa-tag"],
     "cliente"     => ["Clientes", "fas fa-user-tag"],
-    "pelicula"    => ["Pelicula", "fas fa-play"],
-    "idioma"      => ["Idioma", "fas fa-language"],
-    "personal"    => ["Personal", "fas fa-user-shield"],
-    "tienda"      => ["Tienda", "fas fa-shopping-cart"]
+    "pelicula"    => ["Peliculas", "fas fa-play"],
+    "idioma"      => ["Idiomas", "fas fa-language"],
+    "personal"    => ["Personales", "fas fa-user-shield"],
+    "tienda"      => ["Tiendas", "fas fa-shopping-cart"]
 ];
 
 

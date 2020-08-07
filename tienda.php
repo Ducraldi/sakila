@@ -1,12 +1,12 @@
 <?php
-
+// Incluid los modelos
+require_once "modelos/modelo_direcciones.php";
+require_once "modelos/modelo_personal.php";
+require_once "modelos/modelo_tiendas.php";
 require_once "funciones/ayudante.php";
 $nombrePagina = "Tienda";
 
-// Incluid los modelos
 
-require_once "modelos/modelo_personal.php";
-require_once "modelos/modelo_tiendas.php";
 
 
 $gerenteTienda = $_POST['gerenteTienda'] ?? "";
@@ -48,7 +48,7 @@ try {
     $error = $e->getMessage();
 }
 
-
+$todasDireccioens = obtenerDirecciones($conexion);
 $datosTienda = obtenerTiendas($conexion);
 $nombrePersonales = obtenerPersonal($conexion);
 $direccionesTiendas = obtenerTiendas($conexion);
