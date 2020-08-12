@@ -14,9 +14,14 @@ $apellidoCliente = $_POST['apellidoCliente'] ?? "";
 $correoCliente = $_POST['correoCliente'] ?? "";
 $tiendaCliente = $_POST['tiendaCliente'] ?? "";
 $direccionCliente = $_POST['direccionCliente'] ?? "";
-$activadorCliente = $_POST['activadorCliente'] ?? "";
+if (isset($_POST['activadorCliente'])) {
+    $activadorCliente = 1;
+} else {
+    $activadorCliente = 0;
+}
 
 
+imprimirArray($_POST);
 // asegurarno del que usuario alga hecho click en el boton
 
 try {
@@ -52,11 +57,11 @@ try {
             'tiendaCliente',
             'activadorCliente');
 
-        $clienteIncertado = insertarClientes($conexion);
+        $clienteIncertado = insertarClientes($conexion, $datos);
         $mensaje = "Los datos sean guardado correctamente";
 
         // lanzar un error si no se inserto correctamente
-        if (!$actorIncertado) {
+        if (!$clienteIncertado) {
             throw new Exception("Ocurrio uun error al insertar los datos del actor");
         }
 
@@ -65,6 +70,30 @@ try {
 
 
     }
+
+    // Asegurarns que el usuario haya echo cick en el boton de eliminar
+    if (isset($_POST['eliminarCliente'])) {
+        $idCliente = $_POST['eliminarCliente'] ?? "";
+
+        // validar
+        if (empty($idCliente)) {
+            throw new Exception("El id de Cliente no puede estar vacio");
+        }
+        // preparar array
+        $datos = compact('idCliente');
+
+        // eliminar
+        $eliminado = eliminarClientes($conexion, $datos);
+        $mensaje = "los datos fueron eliminados correctamente";
+
+        // lanzar error
+        if (!$eliminado) {
+            throw new Exception("los datos no se eliminaron correctamente");
+        }
+        // Re-direccionar
+        redireccionar("cliente.php");
+    }
+
 } catch (Exception $e) {
     $error = $e->getMessage();
 }

@@ -19,3 +19,11 @@ function insertarDirecciones($conexion, $datos)
 
     return $conexion->prepare($sql)->execute($datos);
 }
+
+function eliminarDirecciones($conexion, $datos)
+{
+    $sql = "UPDATE store SET address_id = 1 WHERE address_id = :idDireccion;
+DELETE FROM address WHERE address_id = :idDireccion;";
+
+    return $conexion->prepare($sql)->execute($datos);
+}

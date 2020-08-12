@@ -12,7 +12,7 @@ $apellidoActor = $_POST['apellidoActor'] ?? "";
 try {// asegurarno del que usuario alga hecho click en el boton
     if (isset($_POST['guardar_actor'])) {
         // codigo para guarda base de datos
-        echo "se va a guardar los datos...";
+        // echo "se va a guardar los datos...";
 
         // Validar los datos
         if (empty($nombreActor)) {
@@ -44,6 +44,7 @@ try {// asegurarno del que usuario alga hecho click en el boton
     // Asegurarns que el usuario haya echo cick en el boton de eliminar
     if (isset($_POST['eliminarActor'])) {
         $idActor = $_POST['eliminarActor'] ?? "";
+
         // validar
         if (empty($idActor)) {
             throw new Exception("El id de Actor no puede estar vacio");

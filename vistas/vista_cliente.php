@@ -66,12 +66,13 @@
 
                         <div class="mb-3">
                             <input type="checkbox" id="activadorCliente" name="activadorCliente"
-                                   value="activadorCliente">
+                                   value="activadorCliente[]">
                             <label for="activadorCliente">Activo</label><br>
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" name="guardar_cliente" class="btn btn-primary"><i class="fas fa-save"> Enviar</i></button>
+                            <button type="submit" name="guardar_cliente" class="btn btn-primary"><i class="fas fa-save">
+                                    Enviar</i></button>
                         </div>
                     </form>
                     <?php
@@ -101,45 +102,52 @@
             if (empty($datosClientes)) {
                 include_once "partes/parte_empty.php";
             } else { ?>
-            <div class="row">
-                <div class="colorTabla col-md-12">
-                    <table class="table table-sm table-dark">
-                        <thead>
-                        <tr class=>
-                            <th scope="col">ID</th>
-                            <th scope="col">Tienda</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Direccion</th>
-                            <th scope="col">Activo</th>
-                            <th scope="col">Fecha</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                <div class="row">
+                    <div class="colorTabla col-md-12">
+                        <form action="" method="post">
+                            <table class="table table-sm table-dark">
+                                <thead>
+                                <tr class=>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Tienda</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Direccion</th>
+                                    <th scope="col">Activo</th>
+                                    <th scope="col">Fecha</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                        <?php
+                                <?php
 
-                        foreach ($datosClientes as $cliente) {
-                            if ($cliente['active'] == '1') {
-                                $icono = '<i class=\'fas fa-check text-success\'></i> ';
-                            } else {
-                                $icono = '<i class=\'fas fa-times text-danger\'></i>  ';
-                            }
-                            echo "<tr class=\"bg-secondary\">
-                              <th scope=\"row\">{$cliente['customer_id']}</th>
-                              <td>{$cliente['manager_staff_id']}</td>
-                              <td>" . ucwords(strtolower($cliente['name'])) . "</td>
-                              <td>{$cliente['email']}</td>
-                              <td>{$cliente['address']}</td>
-                              <td>{$cliente['activo']} {$icono}</td>
-                              <td>{$cliente['fecha']}</td>
-                          </tr>";
-                        }
-                        ?>
-                        </tbody>
-                    </table>
+                                foreach ($datosClientes as $cliente) {
+                                    if ($cliente['active'] == '1') {
+                                        $icono = '<i class=\'fas fa-check text-success\'></i> ';
+                                    } else {
+                                        $icono = '<i class=\'fas fa-times text-danger\'></i>  ';
+                                    }
+                                    echo "<tr class=\"bg-secondary\">
+                                                  <th scope=\"row\">{$cliente['customer_id']}</th>
+                                                  <td>{$cliente['manager_staff_id']}</td>
+                                                  <td>" . ucwords(strtolower($cliente['name'])) . "</td>
+                                                  <td>{$cliente['email']}</td>
+                                                  <td>{$cliente['address']}</td>
+                                                  <td>{$cliente['activo']} {$icono}</td>
+                                                  <td>{$cliente['fecha']}</td>
+                                                  <td>
+                                                  <button class='btn btn-outline-danger btn-sm' value='' name='eliminarCliente' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                                  <button class='btn btn-outline-success btn-sm' value='' name='edictarCliente' title='Editar'><i class='fas fa-edit'></i></button>
+                                                  </td>
+                                              </tr>";
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
                 </div>
-            </div>
             <?php } ?>
         </div>
 </body>

@@ -66,32 +66,39 @@
                 include_once "partes/parte_empty.php";
             } else { ?>
 
-            <div class="row">
-                <div class="colorTabla col-md-12">
-                    <table class="table table-sm table-dark">
-                        <thead>
-                        <tr class=>
-                            <th scope="col">ID</th>
-                            <th scope="col">Ciudades</th>
-                            <th scope="col">Paises</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
+                <div class="row">
+                    <div class="colorTabla col-md-12">
+                        <form action="">
+                            <table class="table table-sm table-dark">
+                                <thead>
+                                <tr class=>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Ciudades</th>
+                                    <th scope="col">Paises</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
 
-                        foreach ($ciudades as $ciudad) {
+                                foreach ($ciudades as $ciudad) {
 
-                            echo "<tr class=\"bg-secondary\">
-                              <th scope=\"row\">{$ciudad['city_id']}</th>
-                              <td>{$ciudad['city']}</td>
-                              <td>{$ciudad['country']}</td>
-                          </tr>";
-                        }
-                        ?>
-                        </tbody>
-                    </table>
+                                    echo "<tr class=\"bg-secondary\">
+                                                  <th scope=\"row\">{$ciudad['city_id']}</th>
+                                                  <td>{$ciudad['city']}</td>
+                                                  <td>{$ciudad['country']}</td>
+                                                  <td>
+                                                  <button class='btn btn-outline-danger btn-sm' value='' name='eliminarCiudad' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                                  <button class='btn btn-outline-success btn-sm' value='' name='edictarCiudad' title='Editar'><i class='fas fa-edit'></i></button>
+                                                  </td>
+                                              </tr>";
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
                 </div>
-            </div>
             <?php } ?>
         </div>
     </div>

@@ -31,6 +31,31 @@ try {
         // Redicionar la pagina
         redireccionar("idioma.php");
     }
+
+    // Asegurarns que el usuario haya echo cick en el boton de eliminar
+    if (isset($_POST['eliminarIdioma'])) {
+        $idIdioma = $_POST['eliminarIdioma'] ?? "";
+
+        // validar
+        if (empty($idIdioma)) {
+            throw new Exception("El id de idioma no puede estar vacio");
+        }
+        // preparar array
+        $datos = compact('idIdioma');
+
+        // eliminar
+        $eliminado = eliminarLenguaje($conexion, $datos);
+        $mensaje = "los datos fueron eliminados correctamente";
+
+        // lanzar error
+        if (!$eliminado) {
+            throw new Exception("los datos no se eliminaron correctamente");
+        }
+        // Re-direccionar
+        redireccionar("idioma.php");
+    }
+
+
 } catch (Exception $e) {
     $error = $e->getMessage();
 }

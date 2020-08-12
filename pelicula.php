@@ -13,9 +13,11 @@ $lanzamientoPelicula = $_POST['lanzamientoPelicula'] ?? "";
 $lenguajePelicula = $_POST['lenguajePelicula'] ?? "";
 $precioPelicula = $_POST['precioPelicula'] ?? "";
 $remplazoPelicula = $_POST['remplazoPelicula'] ?? "";
+$longitudPelicula = $_POST['longitudPelicula'] ?? "";
 $clasificacionlPelicula = $_POST['clasificacionlPelicula'] ?? "";
 $especialPelicula = $_POST['especialPelicula'] ?? "";
 
+imprimirArray($_POST);
 // asegurarno del que usuario alga hecho click en el boton
 
 try {
@@ -37,6 +39,10 @@ try {
         if (empty($remplazoPelicula)) {
             throw new Exception("El remplazo de la pelicula no puede estar vacio");
         }
+
+        if (empty($longitudPelicula)) {
+            throw new Exception("La longitud de la pelicula no puede estar vacia");
+        }
         if (empty($clasificacionlPelicula)) {
             throw new Exception("Requiere de clasificacion de pelicula");
         }
@@ -44,7 +50,11 @@ try {
             throw new Exception("Especifique la especialidades de la pelicula");
         }
 
-        $datos = compact('tituloPelicula', 'descripcionPelicula', 'lenguajePelicula', 'precioPelicula', 'remplazoPelicula', 'clasificacionlPelicula', 'especialPelicula');
+        $especialPelicula = implode(",", $especialPelicula);
+
+        $datos = compact('tituloPelicula', 'descripcionPelicula', 'lenguajePelicula', 'precioPelicula', 'lanzamientoPelicula', 'remplazoPelicula', 'longitudPelicula', 'clasificacionlPelicula', 'especialPelicula');
+
+        imprimirArray($datos);
 
         $peliculaIncertado = insertarPelículas($conexion, $datos);
         $mensaje = "Los datos sean guardado correctamente";
@@ -57,6 +67,31 @@ try {
         // Redicionar la pagina
         redireccionar("pelicula.php");
     }
+
+    // Asegurarns que el usuario haya echo cick en el boton de eliminar
+    if (isset($_POST['eliminarPelicula'])) {
+        $idPelicula = $_POST['eliminarPelicula'] ?? "";
+
+        // validar
+        if (empty($idPelicula)) {
+            throw new Exception("El id de Pelicula no puede estar vacio");
+        }
+        // preparar array
+        $datos = compact('idPelicula');
+
+        // eliminar
+        $eliminado = eliminarPelicula($conexion, $datos);
+        $mensaje = "los datos fueron eliminados correctamente";
+
+        // lanzar error
+        if (!$eliminado) {
+            throw new Exception("los datos no se eliminaron correctamente");
+        }
+        // Re-direccionar
+        redireccionar("pelicula.php");
+    }
+
+
 } catch (Exception $e) {
     $error = $e->getMessage();
 }

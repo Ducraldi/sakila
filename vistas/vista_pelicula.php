@@ -39,13 +39,13 @@
 
                         <div class="mb-3">
                             <label for="lenguajePelicula">Lenguaje de la Pelicula</label>
-                            <select name="lenguajePelicula" value="<?= $lenguajePelicula ?> id="lenguajePelicula" class="custom-select">
+                            <select name="lenguajePelicula" id="lenguajePelicula" class="custom-select">
                                 <option value="">Lenguajes de la Peliculas</option>
 
                                 <?php
 
                                 foreach ($lenguajesPeliculas as $lenguaje) {
-                                    echo "<option value=\"{$lenguaje["lenguage_id"]}\" >{$lenguaje["name"]}</option>";
+                                    echo "<option value=\"{$lenguaje["language_id"]}\" >{$lenguaje["name"]}</option>";
 
                                 }
 
@@ -56,22 +56,35 @@
 
                         <div class="mb-3">
                             <label for="precioPelicula">Precio de la pelicula</label>
-                            <input type="text" name="precioPelicula" value="<?= $precioPelicula ?>" placeholder="Digite el Precio de la pelicula" id="precioPelicula" class="form-control">
+                            <input type="text" name="precioPelicula" value="<?= $precioPelicula ?>"
+                                   placeholder="Digite el Precio de la pelicula" id="precioPelicula"
+                                   class="form-control">
                         </div>
 
                         <div class="mb-3">
                             <label for="remplazoPelicula">Remplazo</label>
-                            <input type="text" name="remplazoPelicula" value="<?= $remplazoPelicula ?>"  placeholder="Digite el Remplazo de la pelicula" id="remplazoPelicula" class="form-control">
+                            <input type="text" name="remplazoPelicula" value="<?= $remplazoPelicula ?>"
+                                   placeholder="Digite el Remplazo de la pelicula" id="remplazoPelicula"
+                                   class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="longitudPelicula">Duracion de la pelicula</label>
+                            <input type="text" name="longitudPelicula" value="<?= $longitudPelicula ?>"
+                                   placeholder="Digite la duracion de la pelicula" id="longitudPelicula"
+                                   class="form-control">
                         </div>
 
                         <div class="mb-3">
                             <label for="clasificacionlPelicula" class="form-label">Clasificacion de la Pelicula</label>
-                            <select name="clasificacionlPelicula" value="<?= $clasificacionlPelicula ?>" placeholder="Digite la Clasificacion de la Pelicula"clasificacionlPelicula" class="custom-select">
-                                <option value="">clasificacionlPeliculade la Pelicula </option>
-                                <?php
-                                $clasificaciones = ['G', 'PG', 'PG-13', 'R','NC-17'];
-                                foreach ($clasificaciones as $reting){
-                                    echo "<option value=\"{$reting}\">{$reting}</option>";
+                            <select name="clasificacionlPelicula" value="<?= $clasificacionlPelicula ?>"
+                                    placeholder="Digite la Clasificacion de la Pelicula" clasificacionlPelicula"
+                            class="custom-select">
+                            <option value="">clasificacionl de la Pelicula</option>
+                            <?php
+                            $clasificaciones = ['G', 'PG', 'PG-13', 'R', 'NC-17'];
+                            foreach ($clasificaciones as $reting) {
+                                echo "<option value=\"{$reting}\">{$reting}</option>";
 
                                 }
                                 ?>
@@ -128,46 +141,53 @@
     } else { ?>
     <div class="row">
         <div class="colorTabla col-md-12">
-            <table class="table table-sm table-dark">
-                <thead>
-                <tr class=>
-                    <th scope="col">Id</th>
-                    <th scope="col">Titulo</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">lanzamiento</th>
-                    <th scope="col">Alquiler</th>
-                    <th scope="col">Arrendamiento</th>
-                    <th scope="col">longitud</th>
-                    <th scope="col">Remplazo</th>
-                    <th scope="col">Clasificación</th>
-                    <th scope="col">Especiales</th>
-                    <th scope="col">Fecha</th>
-                </tr>
-                </thead>
-                <tbody>
+            <form action="" method="post">
+                <table class="table table-sm table-dark">
+                    <thead>
+                    <tr class=>
+                        <th scope="col">Id</th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">lanzamiento</th>
+                        <th scope="col">Alquiler</th>
+                        <th scope="col">Arrendamiento</th>
+                        <th scope="col">longitud</th>
+                        <th scope="col">Remplazo</th>
+                        <th scope="col">Clasificación</th>
+                        <th scope="col">Especiales</th>
+                        <th scope="col">Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-                <?php
+                    <?php
 
-                foreach ($peliculas as $pelicula) {
+                    foreach ($peliculas as $pelicula) {
 
-                    echo "<tr class=\"bg-secondary\">
-                              <th scope=\"row\">{$pelicula['film_id']}</th>      
-                              <td>". ucwords(strtolower($pelicula['title']))."</td>
-                              <td>{$pelicula['description']}</td>  
-                              <td>{$pelicula['release_year']}</td> 
-                              <td>{$pelicula['rental_duration']}</td> 
-                              <td>{$pelicula['rental_rate']}</td> 
-                              <td>{$pelicula['length']}</td> 
-                              <td>{$pelicula['replacement_cost']}</td> 
-                              <td>{$pelicula['rating']}</td> 
-                              <td>{$pelicula['special_features']}</td>
-                              <td>{$pelicula['fecha']}</td>      
-                          </tr>";
-                }
-                ?>
-                </tbody>
-            </table>
-</div>
+                        echo "<tr class=\"bg-secondary\">
+                                         <th scope=\"row\">{$pelicula['film_id']}</th>      
+                                         <td>" . ucwords(strtolower($pelicula['title'])) . "</td>
+                                         <td>{$pelicula['description']}</td>  
+                                         <td>{$pelicula['release_year']}</td> 
+                                         <td>{$pelicula['rental_duration']}</td> 
+                                         <td>{$pelicula['rental_rate']}</td> 
+                                         <td>{$pelicula['length']}</td> 
+                                         <td>{$pelicula['replacement_cost']}</td> 
+                                         <td>{$pelicula['rating']}</td> 
+                                         <td>{$pelicula['special_features']}</td>
+                                         <td>{$pelicula['fecha']}</td>   
+                                         <td>
+                                             <button class='btn btn-outline-danger btn-sm' value='' name='eliminarPelicula' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                             <button class='btn btn-outline-success btn-sm' value='' name='edictarPelicula' title='Editar'><i class='fas fa-edit'></i></button>
+                                             </td>   
+                                     </tr>";
+                    }
+                    ?>
+                    </tbody>
+                </table>
+            </form>
+        </div>
         <?php } ?>
 </body>
 </html>

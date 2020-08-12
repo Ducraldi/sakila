@@ -41,6 +41,31 @@ try {
         // redireccionar la pagina
         redireccionar("ciudad.php");
     }
+
+
+    // Asegurarns que el usuario haya echo cick en el boton de eliminar
+    if (isset($_POST['eliminarCiudad'])) {
+        $idCiudad = $_POST['eliminarCiudad'] ?? "";
+
+        // validar
+        if (empty($idCiudad)) {
+            throw new Exception("El id de Ciudad no puede estar vacio");
+        }
+        // preparar array
+        $datos = compact('idCiudad');
+
+        // eliminar
+        $eliminado = eliminarCiudades($conexion, $datos);
+        $mensaje = "los datos fueron eliminados correctamente";
+
+        // lanzar error
+        if (!$eliminado) {
+            throw new Exception("los datos no se eliminaron correctamente");
+        }
+        // Re-direccionar
+        redireccionar("ciudad.php");
+    }
+
 } catch (Exception $e) {
     $error = $e->getMessage();
 }

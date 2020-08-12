@@ -27,6 +27,23 @@ function obtenerTodasTiendas($conexion)
 
 function insertarTiendas($conexion, $datos)
 {
-    $sql = "INSERT INTO store (manager_staff_id, address_id) VALUE (:gerenteTienda, :direccionTienda);";
+    $sql = "INSERT INTO store (manager_staff_id, address_id) VALUES (:gerenteTienda, :direccionTienda);";
+    return $conexion->prepare($sql)->execute($datos);
+}
+
+function verificarGerenteTienda($conexion, $datos)
+{
+    $sql = "SELECT * FROM store WHERE manager_staff_id = :gerenteTienda;";
+
+    $query = $conexion->prepare($sql);
+    $query->execute($datos);
+
+    return $query->fetch();
+}
+
+function eliminarTiendas($conexion, $datos)
+{
+    $sql = "DELETE FROM store WHERE store_id = :idTienda;";
+
     return $conexion->prepare($sql)->execute($datos);
 }

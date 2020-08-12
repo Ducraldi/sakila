@@ -12,10 +12,18 @@ function obtenerCategoria($conexion)
     return $conexion->query($sql)->fetchAll();
 }
 
-function insertarCategoria($conexion, $datos){
+function insertarCategoria($conexion, $datos)
+{
 
     $sql = "INSERT INTO category (name)
             VALUE (:nombreCategoria);";
+
+    return $conexion->prepare($sql)->execute($datos);
+}
+
+function eliminarCategoria($conexion, $datos)
+{
+    $sql = "DELETE FROM category WHERE category_id = :idCategoria;";
 
     return $conexion->prepare($sql)->execute($datos);
 }

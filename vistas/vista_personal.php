@@ -63,15 +63,15 @@
                             </select>
                         </div>
 
-                        <div class="mb-3">
-                            <input type="checkbox" id="activadorPersonal" name="activadorPersonal"
-                                   value="activadorPersonal">
-                            <label for="1">Activo</label><br>
-                        </div>
+                            <div class="mb-3">
+                                <input type="checkbox" id="activadorPersonal" name="activadorPersonal"
+                                       value="activadorPersonal[]">
+                                <label for="activadorPersonal">Activo</label><br>
+                            </div>
 
-                        <div class="mb-3">
-                            <label for="usuarioPersonal">Usuario del Personal</label>
-                            <input value="<?= $usuarioPersonal ?>" placeholder="Escribe el usuario" type="text" name="usuarioPersonal"
+                            <div class="mb-3">
+                                <label for="usuarioPersonal">Usuario del Personal</label>
+                                <input value="<?= $usuarioPersonal ?>" placeholder="Escribe el usuario" type="text" name="usuarioPersonal"
                                    id="usuarioPersonal" class="form-control">
                         </div>
 
@@ -116,23 +116,26 @@
         } else { ?>
         <div class="row">
             <div class="colorTabla col-md-12">
-                <table class="table table-sm table-dark">
-                    <thead>
-                    <tr class=>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombres</th>
-                        <th scope="col">Direcciones</th>
-                        <th scope="col">Pinturas</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Tiendas</th>
-                        <th scope="col">Activos</th>
-                        <th scope="col">Usuarios</th>
-                        <th scope="col">Contraceñas</th>
-                        <th scope="col">Fechas</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
+                <form action="" method="post">
+                    <table class="table table-sm table-dark">
+                </form>
+                <thead>
+                <tr class=>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Direcciones</th>
+                    <th scope="col">Pinturas</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Tiendas</th>
+                    <th scope="col">Activos</th>
+                    <th scope="col">Usuarios</th>
+                    <th scope="col">Contraceñas</th>
+                    <th scope="col">Fechas</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
 
                         foreach ($personales as $personal) {
                             if ($personal['active'] == '1') {
@@ -144,13 +147,17 @@
                               <th scope=\"row\">{$personal['staff_id']}</th>
                               <td>" . ucwords(strtolower($personal['name'])) . "</td>
                               <td>{$personal['address']}</td>
-                              <td>{$personal['picture']}</td>
+                              <td>" . ucwords(strtolower($personal['picture'])) . "</td>
                               <td>{$personal['email']}</td>
                               <td>{$personal['first_name']}</td>
-                              <td>{$personal['active']} {$icono}</td>
+                              <td>{$personal['activo']} {$icono}</td>
                               <td>{$personal['username']}</td>
                               <td>{$personal['password']}</td>
                               <td>{$personal['fecha']}</td>
+                              <td>
+                                  <button class='btn btn-outline-danger btn-sm' value='' name='eliminarPersonal' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                  <button class='btn btn-outline-success btn-sm' value='' name='edictarPersonal' title='Editar'><i class='fas fa-edit'></i></button>
+                                  </td>
                           </tr>";
                     }
                     ?>

@@ -14,6 +14,16 @@ function obtenerCiudades($conexion)
 
 function insertarCiudades($conexion, $datos)
 {
-    $sql = "";
+    $sql = "INSERT INTO city (city, country_id)
+            values (:ciudadPrincipal, :selecionPais);";
     return $conexion->prepare($sql)->execute($datos);
 }
+
+function eliminarCiudades($conexion, $datos)
+{
+    $sql = "DELETE FROM city WHERE city_id = :idCiudad;";
+
+    return $conexion->prepare($sql)->execute($datos);
+}
+
+

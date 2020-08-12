@@ -26,10 +26,6 @@ try {
             throw new Exception("La direccion principal no puede estar vacia");
         }
 
-        if (empty($direccionSecundaria)) {
-            throw new Exception("La direccion Secundaria no puede estar vacia");
-        }
-
         if (empty($distrito)) {
             throw new Exception("El distrito no puede estar vacio");
         }
@@ -60,6 +56,31 @@ try {
         // redireccionar la pagina
         redireccionar("direcciones.php");
     }
+
+    // Asegurarns que el usuario haya echo cick en el boton de eliminar
+    if (isset($_POST['eliminarDirecion'])) {
+        $idDireccion = $_POST['eliminarDirecion'] ?? "";
+
+        // validar
+        if (empty($idDireccion)) {
+            throw new Exception("El id de Direciones no puede estar vacio");
+        }
+        // preparar array
+        $datos = compact('idDireccion');
+
+        // eliminar
+        $eliminado = eliminarDirecciones($conexion, $datos);
+        $mensaje = "los datos fueron eliminados correctamente";
+
+        // lanzar error
+        if (!$eliminado) {
+            throw new Exception("los datos no se eliminaron correctamente");
+        }
+        // Re-direccionar
+        redireccionar("direcciones.php");
+    }
+
+
 } catch (Exception $e) {
     $error = $e->getMessage();
 }

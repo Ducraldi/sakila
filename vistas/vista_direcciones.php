@@ -88,38 +88,46 @@
         } else { ?>
         <div class="row">
             <div class="colorTabla col-md-12">
-                <table class="table table-sm table-dark">
-                    <thead>
-                    <tr class=>
-                        <th scope="col">ID</th>
-                        <th scope="col">Direccion</th>
-                        <th scope="col">Direccion Numero 2</th>
-                        <th scope="col">Distrito</th>
-                        <th scope="col">Id City</th>
-                        <th scope="col">Codigo Postal</th>
-                        <th scope="col">Telefono</th
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
+                <form action="" method="post">
+                    <table class="table table-sm table-dark">
+                        <thead>
+                        <tr class=>
+                            <th scope="col">ID</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Direccion Numero 2</th>
+                            <th scope="col">Distrito</th>
+                            <th scope="col">Id City</th>
+                            <th scope="col">Codigo Postal</th>
+                            <th scope="col">Telefono</th>
+                            <th>Acciones</th>
 
-                    foreach ($todasDirecciones as $direcciones) {
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
 
-                        echo "<tr class=\"bg-secondary\">
-                              <th scope=\"row\">{$direcciones['address_id']}</th>      
-                              <td>{$direcciones['address']}</td>
-                              <td>{$direcciones['address2']}</td>
-                              <td>{$direcciones['district']}</td>
-                              <td>{$direcciones['city_id']}</td>
-                              <td>{$direcciones['postal_code']}</td>
-                              <td>{$direcciones['phone']}</td>                 
-                          </tr>";
-                    }
-                    ?>
-                    </tbody>
-                </table>
-    </div>
-    <?php } ?>
+                        foreach ($todasDirecciones as $direcciones) {
+
+                            echo "<tr class=\"bg-secondary\">
+                                              <th scope=\"row\">{$direcciones['address_id']}</th>      
+                                              <td>{$direcciones['address']}</td>
+                                              <td>{$direcciones['address2']}</td>
+                                              <td>{$direcciones['district']}</td>
+                                              <td>{$direcciones['city_id']}</td>
+                                              <td>{$direcciones['postal_code']}</td>
+                                              <td>{$direcciones['phone']}</td>
+                                              <td>
+                                  <button class='btn btn-outline-danger btn-sm' value='{$direcciones['address_id']}' name='eliminarDirecion' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                  <button class='btn btn-outline-success btn-sm' value='{$direcciones['address_id']}' name='edictarDirecion' title='Editar'><i class='fas fa-edit'></i></button>
+                                  </td>                
+                                          </tr>";
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <?php } ?>
 </div>
 </body>
 </html>

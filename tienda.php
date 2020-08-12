@@ -1,9 +1,10 @@
 <?php
 // Incluid los modelos
+require_once "funciones/ayudante.php";
 require_once "modelos/modelo_direcciones.php";
 require_once "modelos/modelo_personal.php";
 require_once "modelos/modelo_tiendas.php";
-require_once "funciones/ayudante.php";
+
 $nombrePagina = "Tienda";
 
 
@@ -12,7 +13,7 @@ $nombrePagina = "Tienda";
 $gerenteTienda = $_POST['gerenteTienda'] ?? "";
 $direccionTienda = $_POST['direccionTienda'] ?? "";
 
-
+imprimirArray($_POST);
 // asegurarno del que usuario alga hecho click en el boton
 
 try {
@@ -32,6 +33,13 @@ try {
         // preparar los array con los datos
         $datos = compact('gerenteTienda', 'direccionTienda');
 
+        // Verificar que el gerente no tenga una tienda
+        $tieneTienda = verificarGerenteTienda($conexion, ['gerenteTienda' => $gerenteTienda]);
+
+        if ($tieneTienda) {
+            throw new Exception('Este gerente ya tiene una tienda asociada');
+        }
+
         // insertar datos
         $tiendaInsertada = insertarTiendas($conexion, $datos);
         $mensaje = "Los datos sean guardado correctamente";
@@ -48,10 +56,11 @@ try {
     $error = $e->getMessage();
 }
 
-$todasDireccioens = obtenerDirecciones($conexion);
+$todasDirecciones = obtenerDirecciones($conexion);
 $datosTienda = obtenerTiendas($conexion);
 $nombrePersonales = obtenerPersonal($conexion);
 $direccionesTiendas = obtenerTiendas($conexion);
+
 
 // incluir  vista
 

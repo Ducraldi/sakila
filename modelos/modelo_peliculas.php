@@ -6,9 +6,12 @@ function obtenerPelículas($conexion){
        f.title,
        f.description,
        f.release_year,
+       CONCAT(f.release_year,'Años' ' ') AS release_year,
        f.rental_duration,
        f.rental_rate,
-       f.length,
+       CONCAT(f.rental_rate, ' ' 'Dinero') AS rental_rate,
+       f.length, 
+       CONCAT(f.length, ' ' 'Minutos') AS length,
        f.replacement_cost,
        f.rating,
        f.special_features,
@@ -20,16 +23,34 @@ function obtenerPelículas($conexion){
      return $conexion->query($sql)->fetchAll();
 
 }
+
 function insertarPelículas($conexion, $datos)
 {
     $sql = "INSERT INTO film (title,
                   description,
                   release_year,
-                  rental_duration,
+                  language_id,
                   rental_rate,
                   length,
                   replacement_cost,
                   rating,
-                  special_features) VALUE (:tituloPelicula, :descripcionPelicula, :lanzamientoPelicula, :precioPelicula, :remplazoPelicula, :clasificacionlPelicula, :especialPelicula)";
+                  special_features) VALUES (
+                                           :tituloPelicula, 
+                                           :descripcionPelicula, 
+                                           :lanzamientoPelicula, 
+                                            :lenguajePelicula,
+                                           :precioPelicula,
+                                            :longitudPelicula, 
+                                           :remplazoPelicula,
+                                           :clasificacionlPelicula, 
+                                           :especialPelicula)";
     return $conexion->prepare($sql)->execute($datos);
 }
+
+function eliminarPelicula($conexion, $datos)
+{
+    $sql = "DELETE FROM film WHERE film_id = :idPelicula;";
+
+    return $conexion->prepare($sql)->execute($datos);
+}
+

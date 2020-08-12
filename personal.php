@@ -15,12 +15,16 @@ $imagenPersonal = $_POST['imagenPersonal'] ?? "";
 $emailPersonal = $_POST['emailPersonal'] ?? "";
 $tiendaPersonal = $_POST['tiendaPersonal'] ?? "";
 $usuarioPersonal = $_POST['usuarioPersonal'] ?? "";
-$activarPersonal = $_POST['activarPersonal'] ?? "";
+if (isset($_POST['activadorPersonal'])) {
+    $activadorPersonal = 1;
+} else {
+    $activadorPersonal = 0;
+}
 $contrasenaPersonal = $_POST['contrasenaPersonal'] ?? "";
 
-// asegurarno del que usuario alga hecho click en el boton
 imprimirArray($_POST);
 
+// asegurarno del que usuario alga hecho click en el boton
 try {
     if (isset($_POST['guardar_personal'])) {
         // codigo para guarda base de datos
@@ -46,10 +50,6 @@ try {
             throw new Exception("El correo electronico no puede estar vacio");
         }
 
-        if (empty($tiendaPersonal)) {
-            throw new Exception("La tienda no puede estar vacia ");
-        }
-
         if (empty($usuarioPersonal)) {
             throw new Exception("El usuario no puede estar vacio");
         }
@@ -58,7 +58,16 @@ try {
             throw new Exception("Escriba su contraceña bien ");
         }
 
-        $datos = compact('nombrePersonal', 'apellidoPersonal',  'direccionPersonal', 'imagenPersonal', 'emailPersonal', 'activarPersonal', 'tiendaPersonal', 'usuarioPersonal', 'contrasenaPersonal');
+        $datos = compact('nombrePersonal',
+            'apellidoPersonal',
+            'activadorPersonal',
+            'direccionPersonal',
+            'imagenPersonal',
+            'emailPersonal',
+
+            'tiendaPersonal',
+            'usuarioPersonal',
+            'contrasenaPersonal');
 
 
         $personalIncertado = intesertarPersonal($conexion, $datos);
@@ -72,6 +81,30 @@ try {
         // Redicionar la pagina
         redireccionar("personal.php");
     }
+
+    // Asegurarns que el usuario haya echo cick en el boton de eliminar
+    if (isset($_POST['eliminarPersonal'])) {
+        $idPersonal = $_POST['eliminarPersonal'] ?? "";
+
+        // validar
+        if (empty($idPersonal)) {
+            throw new Exception("El id de Pelsonal no puede estar vacio");
+        }
+        // preparar array
+        $datos = compact('idPersonal');
+
+        // eliminar
+        $eliminado = eliminarPersonal($conexion, $datos);
+        $mensaje = "los datos fueron eliminados correctamente";
+
+        // lanzar error
+        if (!$eliminado) {
+            throw new Exception("los datos no se eliminaron correctamente");
+        }
+        // Re-direccionar
+        redireccionar("personal.php");
+    }
+
 } catch (Exception $e) {
     $error = $e->getMessage();
 }

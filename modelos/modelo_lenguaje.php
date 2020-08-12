@@ -13,9 +13,17 @@ function obtenerLenguaje($conexion)
     return $conexion->query($sql)->fetchAll();
 }
 
-function insertarLenguaje($conexion, $datos){
+function insertarLenguaje($conexion, $datos)
+{
 
     $sql = "INSERT INTO language (name) VALUE (:nombreIdioma);";
+
+    return $conexion->prepare($sql)->execute($datos);
+}
+
+function eliminarLenguaje($conexion, $datos)
+{
+    $sql = "DELETE FROM language WHERE language_id = :idIdioma;";
 
     return $conexion->prepare($sql)->execute($datos);
 }

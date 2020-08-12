@@ -35,7 +35,7 @@
 
                                 <?php
 
-                                foreach ($todasDireccioens as $direcciones) {
+                                foreach ($todasDirecciones as $direcciones) {
 
                                     echo "<option value=\"{$direcciones["address_id"]}\">{$direcciones["address"]}</option>";
                                 }
@@ -75,34 +75,41 @@
                 include_once "partes/parte_empty.php";
             } else { ?>
 
-            <div class="row">
-                <div class="colorTabla col-md-12">
-                    <table class="table table-sm table-dark">
-                        <thead>
-                        <tr class=>
-                            <th scope="col">ID</th>
-                            <th scope="col">Personales</th>
-                            <th scope="col">Direccion</th>.
-                            <th scope="col">Fechas</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
+                <div class="row">
+                    <div class="colorTabla col-md-12">
+                        <form action="" method="post">
+                            <table class="table table-sm table-dark">
+                                <thead>
+                                <tr class=>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Personales</th>
+                                    <th scope="col">Direccion</th>
+                                    <th scope="col">Fechas</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
 
-                        foreach ($datosTienda as $tienda) {
+                                foreach ($datosTienda as $tienda) {
 
-                            echo "<tr class=\"bg-secondary\">
-                              <th scope=\"row\">{$tienda['store_id']}</th>
-                              <td>" . ucwords(strtolower($tienda['first_name'])) . "</td>
-                              <td>{$tienda['address']}</td>
-                              <td>{$tienda['fecha']}</td>
-                          </tr>";
-                        }
-                        ?>
-                        </tbody>
-                    </table>
+                                    echo "<tr class=\"bg-secondary\">
+                                                  <th scope=\"row\">{$tienda['store_id']}</th>
+                                                  <td>" . ucwords(strtolower($tienda['first_name'])) . "</td>
+                                                  <td>{$tienda['address']}</td>
+                                                  <td>{$tienda['fecha']}</td>
+                                                  <td>
+                                                      <button class='btn btn-outline-danger btn-sm' value='' name='eliminarTienda' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                                      <button class='btn btn-outline-success btn-sm' value='' name='edictarTienda' title='Editar'><i class='fas fa-edit'></i></button>  
+                                                  </td>
+                                              </tr>";
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
                 </div>
-            </div>
             <?php } ?>
         </div>
     </div>

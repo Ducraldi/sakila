@@ -31,6 +31,31 @@ try {
         redireccionar("pais.php");
 
     }
+
+    // Asegurarns que el usuario haya echo cick en el boton de eliminar
+    if (isset($_POST['eliminarPais'])) {
+        $idPais = $_POST['eliminarPais'] ?? "";
+
+        // validar
+        if (empty($idPais)) {
+            throw new Exception("El id de Pais no puede estar vacio");
+        }
+        // preparar array
+        $datos = compact('idPais');
+
+        // eliminar
+        $eliminado = eliminarPaises($conexion, $datos);
+        $mensaje = "los datos fueron eliminados correctamente";
+
+        // lanzar error
+        if (!$eliminado) {
+            throw new Exception("los datos no se eliminaron correctamente");
+        }
+        // Re-direccionar
+        redireccionar("pais.php");
+    }
+
+
 } catch (Exception $e) {
     $error = $e->getMessage();
 }

@@ -47,33 +47,40 @@
             if (empty($categorias)) {
                 include_once "partes/parte_empty.php";
             } else { ?>
-            <div class="row">
-                <div class="colorTabla col-md-12">
-                    <table class="table table-sm table-dark">
-                        <thead>
-                        <tr class=>
-                            <th scope="col">ID</th>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">Fecha</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                <div class="row">
+                    <div class="colorTabla col-md-12">
+                        <form action="" method="post">
+                            <table class="table table-sm table-dark">
+                                <thead>
+                                <tr class=>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Categoria</th>
+                                    <th scope="col">Fecha</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                        <?php
+                                <?php
 
-                        foreach ($categorias as $categoria) {
+                                foreach ($categorias as $categoria) {
 
-                            echo "<tr class=\"bg-secondary\">
-                              <th scope=\"row\">{$categoria['category_id']}</th>      
-                              <td>{$categoria['name']}</td>  
-                              <td>{$categoria['fecha']}</td>     
-                          </tr>";
-                        }
-                        ?>
-                        </tbody>
-                    </table>
+                                    echo "<tr class=\"bg-secondary\">
+                                                  <th scope=\"row\">{$categoria['category_id']}</th>      
+                                                  <td>{$categoria['name']}</td>  
+                                                  <td>{$categoria['fecha']}</td>
+                                                  <td>
+                                                  <button class='btn btn-outline-danger btn-sm' value='' name='eliminarCategoria' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                                  <button class='btn btn-outline-success btn-sm' value='' name='edictarCategoria' title='Editar'><i class='fas fa-edit'></i></button>
+                                                  </td>
+                                              </tr>";
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
                 </div>
-            </div>
             <?php } ?>
         </div>
     </div>

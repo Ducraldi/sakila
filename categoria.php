@@ -29,6 +29,31 @@ try {
         // Redicionar la pagina
         redireccionar("categoria.php");
     }
+
+    // Asegurarns que el usuario haya echo cick en el boton de eliminar
+    if (isset($_POST['eliminarCategoria'])) {
+        $idCategoria = $_POST['eliminarCategoria'] ?? "";
+
+        // validar
+        if (empty($idCategoria)) {
+            throw new Exception("El id de Categoria no puede estar vacio");
+        }
+        // preparar array
+        $datos = compact('idCategoria');
+
+        // eliminar
+        $eliminado = eliminarCategoria($conexion, $datos);
+        $mensaje = "los datos fueron eliminados correctamente";
+
+        // lanzar error
+        if (!$eliminado) {
+            throw new Exception("los datos no se eliminaron correctamente");
+        }
+        // Re-direccionar
+        redireccionar("categoria.php");
+    }
+
+
 } catch (Exception $e) {
     $error = $e->getMessage();
 }

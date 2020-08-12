@@ -8,6 +8,7 @@ function obtenerClientes($conexion)
        c.last_name,
        CONCAT(c.first_name, ' ', c.last_name) AS name,
        c.email,
+       LOWER(c.email) AS email,
        c.address_id,
        c.create_date,
        DATE_FORMAT(c.create_date, '%d/%m/%Y %l:%i %p' ) AS fecha,
@@ -17,7 +18,6 @@ function obtenerClientes($conexion)
 FROM customer As c
 LEFT JOIN store AS s on c.store_id = s.store_id
 LEFT JOIN address AS a on c.address_id = a.address_id
-ORDER BY c.first_name ASC 
 ;";
 
     return $conexion->query($sql)->fetchAll();
@@ -42,4 +42,11 @@ function insertarClientes($conexion, $datos)
 
     return $conexion->prepare($sql)->execute($datos);
 
+}
+
+function eliminarClientes($conexion, $datos)
+{
+    $sql = "DELETE FROM customer WHERE customer_id = :idCliente;";
+
+    return $conexion->prepare($sql)->execute($datos);
 }

@@ -46,33 +46,39 @@
             if (empty($paises)) {
                 include_once "partes/parte_empty.php";
             } else { ?>
-            <div class="row">
-                <div class="colorTabla col-md-12">
-                    <table class="table table-sm table-dark">
-                        <thead>
-                        <tr class=>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nombre del pais</th>
+                <div class="row">
+                    <div class="colorTabla col-md-12">
+                        <form action="" method="post">
+                            <table class="table table-sm table-dark">
+                                <thead>
+                                <tr class=>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre del pais</th>
+                                    <th>Acciones</th>
 
-                        </tr>
-                        </thead>
-                        <tbody>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                        <?php
+                                <?php
 
-                        foreach ($paises as $pais) {
+                                foreach ($paises as $pais) {
 
-                            echo "<tr class=\"bg-secondary\">
-                              <th scope=\"row\">{$pais['country_id']}</th>
-                              <td>{$pais['country']}</td>
-               
-                          </tr>";
-                        }
-                        ?>
-                        </tbody>
-                    </table>
+                                    echo "<tr class=\"bg-secondary\">
+                                                  <th scope=\"row\">{$pais['country_id']}</th>
+                                                  <td>{$pais['country']}</td>
+                                                  <td>
+                                                  <button class='btn btn-outline-danger btn-sm' value='{$pais['country_id']}' name='eliminarPais' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                                  <button class='btn btn-outline-success btn-sm' value='{$pais['country_id']}' name='edictarPais' title='Editar'><i class='fas fa-edit'></i></button>
+                                                  </td>
+                                              </tr>";
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
                 </div>
-            </div>
             <?php } ?>
         </div>
 </body>

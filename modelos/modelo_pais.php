@@ -15,3 +15,11 @@ function incertarPaises($conexion, $datos)
     $sql = "INSERT INTO country (country) VALUE (:pais);";
     return $conexion->prepare($sql)->execute($datos);
 }
+
+function eliminarPaises($conexion, $datos)
+{
+    $sql = "UPDATE city SET country_id = 1 WHERE country_id = :idPais;
+            DELETE FROM country WHERE country_id = :idPais;";
+
+    return $conexion->prepare($sql)->execute($datos);
+}

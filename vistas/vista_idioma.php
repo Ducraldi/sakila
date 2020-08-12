@@ -50,34 +50,41 @@
             if (empty($lenguajes)) {
                 include_once "partes/parte_empty.php";
             } else { ?>
-            <div class="row">
-                <div class="colorTabla col-md-12">
-                    <table class="table table-sm table-dark">
-                        <thead>
-                        <tr class=>
-                            <th scope="col">ID</th>
-                            <th scope="col">Idioma</th>
-                            <th scope="col">Fecha</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                <div class="row">
+                    <div class="colorTabla col-md-12">
+                        <form action="" method="post">
+                            <table class="table table-sm table-dark">
+                                <thead>
+                                <tr class=>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Idioma</th>
+                                    <th scope="col">Fecha</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
 
-                        <?php
+                                <?php
 
-                        foreach ($lenguajes as $lenguaje) {
+                                foreach ($lenguajes as $lenguaje) {
 
-                            echo "<tr class=\"bg-secondary\">
-                              <th scope=\"row\">{$lenguaje['language_id']}</th>
-                              <td>" . ucwords(strtolower($lenguaje['name'])) . "  </td>  
-                              <td>{$lenguaje['fecha']}</td>     
-                          </tr>";
-                        }
-                        ?>
-                        </tbody>
-                    </table>
-        </div>
-    </div>
-     <?php } ?>
+                                    echo "<tr class=\"bg-secondary\">
+                                                  <th scope=\"row\">{$lenguaje['language_id']}</th>
+                                                  <td>" . ucwords(strtolower($lenguaje['name'])) . "  </td>  
+                                                  <td>{$lenguaje['fecha']}</td>
+                                                  <td>
+                                                  <button class='btn btn-outline-danger btn-sm' value='' name='eliminarIdioma' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                                  <button class='btn btn-outline-success btn-sm' value='' name='edictarIdioma' title='Editar'><i class='fas fa-edit'></i></button>
+                                                  </td>    
+                                              </tr>";
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            <?php } ?>
 </div>
 </body>
 </html>
