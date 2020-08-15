@@ -21,9 +21,10 @@ $paginaMenu = [
 foreach ($paginaMenu as $nombreArchivo => $pagina) {
     $iconos = $pagina[1];
     $textoPagina = $pagina[0];
-    echo "<nav class=\"nav flex-column\">
-   <div class=\"mb-3 btn btn-dark\"><a class=\"nav-link\" href=\"{$nombreArchivo}.php\">
-            <i class=\"{$iconos}\"></i>
+    echo "<nav class=\" nav flex-column\">
+   <div class=\"mb-3 \"><a class=\"lala nav-link btn btn-primary  animated animate__heartBeat \" \" href=\"{$nombreArchivo}.php\">
+            
+            <i class=\"{$iconos}\"></i> 
             {$textoPagina}
         </a></div>";
 

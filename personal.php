@@ -3,7 +3,7 @@
 require_once "modelos/modelo_personal.php";
 require_once "modelos/modelo_direcciones.php";
 require_once "funciones/ayudante.php";
-$nombrePagina = "Pesonal";
+$nombrePagina = "Pesonales";
 
 
 
@@ -22,13 +22,13 @@ if (isset($_POST['activadorPersonal'])) {
 }
 $contrasenaPersonal = $_POST['contrasenaPersonal'] ?? "";
 
-imprimirArray($_POST);
+
 
 // asegurarno del que usuario alga hecho click en el boton
 try {
     if (isset($_POST['guardar_personal'])) {
         // codigo para guarda base de datos
-        echo "se va a guardar los datos...";
+        // echo "se va a guardar los datos...";
 
         if (empty($nombrePersonal)) {
             throw new Exception("El nombre no puede estar vacio");

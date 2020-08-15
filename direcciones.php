@@ -15,12 +15,14 @@ $distrito = $_POST['distrito'] ?? "";
 $ciudad = $_POST['ciudad'] ?? "";
 $codigoPostal = $_POST['codigoPostal'] ?? "";
 $telefono = $_POST['telefono'] ?? "";
+$idDireccion = $_POST['eliminarDirecion'] ?? "";
+
 
 // asegurarno del que usuario alga hecho click en el boton
 try {
     if (isset($_POST['guardar_direccion'])) {
         // codigo para guarda base de datos
-        echo "se va a guardar los datos...";
+        // echo "se va a guardar los datos...";
 
         if (empty($direccionPrincipal)) {
             throw new Exception("La direccion principal no puede estar vacia");
@@ -57,9 +59,9 @@ try {
         redireccionar("direcciones.php");
     }
 
-    // Asegurarns que el usuario haya echo cick en el boton de eliminar
-    if (isset($_POST['eliminarDirecion'])) {
-        $idDireccion = $_POST['eliminarDirecion'] ?? "";
+    // Asegurarns que el usuario haya echo cick en el buuboton de eliminar
+    if (isset($_POST['eliminarDireccion'])) {
+        $idDireccion = $_POST['eliminarDireccion'] ?? "";
 
         // validar
         if (empty($idDireccion)) {

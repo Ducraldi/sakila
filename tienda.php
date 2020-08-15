@@ -5,7 +5,7 @@ require_once "modelos/modelo_direcciones.php";
 require_once "modelos/modelo_personal.php";
 require_once "modelos/modelo_tiendas.php";
 
-$nombrePagina = "Tienda";
+$nombrePagina = "Tiendas";
 
 
 
@@ -13,21 +13,21 @@ $nombrePagina = "Tienda";
 $gerenteTienda = $_POST['gerenteTienda'] ?? "";
 $direccionTienda = $_POST['direccionTienda'] ?? "";
 
-imprimirArray($_POST);
+
 // asegurarno del que usuario alga hecho click en el boton
 
 try {
     if (isset($_POST['guardar_tienda'])) {
         // codigo para guarda base de datos
-        echo "se va a guardar los datos...";
+        // echo "se va a guardar los datos...";
 
         // validar los datos
         if (empty($gerenteTienda)) {
-            throw new Exception("El nombre de gerente");
+            throw new Exception("El Personal de la tienda");
         }
 
         if (empty($direccionTienda)) {
-            throw new Exception("Selecione una tienda");
+            throw new Exception("Selecione una direccion de la tienda");
         }
 
         // preparar los array con los datos
@@ -52,6 +52,30 @@ try {
         // redireccionar la pagina
         redireccionar("tienda.php");
     }
+
+    // Asegurarns que el usuario haya echo cick en el boton de eliminar
+    if (isset($_POST['eliminarTienda'])) {
+        $idTienda = $_POST['eliminarTienda'] ?? "";
+
+        // validar
+        if (empty($idTienda)) {
+            throw new Exception("El id de Tienda no puede estar vacio");
+        }
+        // preparar array
+        $datos = compact('idTienda');
+
+        // eliminar
+        $eliminado = eliminarTiendas($conexion, $datos);
+        $mensaje = "los datos fueron eliminados correctamente";
+
+        // lanzar error
+        if (!$eliminado) {
+            throw new Exception("los datos no se eliminaron correctamente");
+        }
+        // Re-direccionar
+        redireccionar("tienda.php");
+    }
+
 } catch (Exception $e) {
     $error = $e->getMessage();
 }

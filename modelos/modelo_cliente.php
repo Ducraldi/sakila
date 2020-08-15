@@ -3,7 +3,7 @@ require_once "config/conexion.php";
 function obtenerClientes($conexion)
 {
     $sql = "SElECT c.customer_id,
-       s.manager_staff_id,
+       s.store_id,
        c.first_name,
        c.last_name,
        CONCAT(c.first_name, ' ', c.last_name) AS name,
@@ -46,7 +46,8 @@ function insertarClientes($conexion, $datos)
 
 function eliminarClientes($conexion, $datos)
 {
-    $sql = "DELETE FROM customer WHERE customer_id = :idCliente;";
+    $sql = "UPDATE rental SET customer_id = 6 WHERE customer_id = :idCliente;
+            DELETE FROM customer WHERE customer_id = :idCliente;";
 
     return $conexion->prepare($sql)->execute($datos);
 }

@@ -10,15 +10,18 @@
         <div class="col-md-10">
             <h3><?php echo "$nombrePagina"; ?></h3>
             <div class="row">
-                <div class="col-md-5">
+                <div class="ani animated animate__bounceInLeft col-md-5">
                     <form action="categoria.php" method="post">
+                        <input type="hidden" name="idCategoria" value="<?= $idCategoria ?>">
                         <div class="mb-3">
                             <label for="nombreCategoria">Nombre de las Categoria</label>
-                            <input type="text" name="nombreCategoria" value="<?= $nombreCategoria ?>" id="nombreCategoria" class="form-control">
+                            <input type="text" placeholder="Escribe una categoria" name="nombreCategoria"
+                                   value="<?= $nombreCategoria ?>" id="nombreCategoria" class="form-control">
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" name="guardar_categoria" class="btn btn-primary"><i class="fas fa-save"> Enviar</i></button>
+                            <button type="submit" name="guardar_categoria" class="btn btn-primary"><i
+                                        class="fas fa-save"> Enviar</i></button>
                         </div>
                     </form>
                     <?php
@@ -67,11 +70,11 @@
 
                                     echo "<tr class=\"bg-secondary\">
                                                   <th scope=\"row\">{$categoria['category_id']}</th>      
-                                                  <td>{$categoria['name']}</td>  
+                                                  <td>" . ucwords(strtolower($categoria['name'])) . "</td>  
                                                   <td>{$categoria['fecha']}</td>
                                                   <td>
-                                                  <button class='btn btn-outline-danger btn-sm' value='' name='eliminarCategoria' title='Eliminar'><i class='fas fa-trash'></i></button>
-                                                  <button class='btn btn-outline-success btn-sm' value='' name='edictarCategoria' title='Editar'><i class='fas fa-edit'></i></button>
+                                                  <button class='btn btn-outline-danger btn-sm' value='{$categoria['category_id']}' name='eliminarCategoria' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                                  <button class='btn btn-outline-success btn-sm' value='{$categoria['category_id']}' name='editarCategoria' title='Editar'><i class='fas fa-edit'></i></button>
                                                   </td>
                                               </tr>";
                                 }

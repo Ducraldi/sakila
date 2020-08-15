@@ -6,7 +6,7 @@ function obtenerTiendas($conexion)
 {
     $sql = "SELECT sto.store_id, 
        sto.manager_staff_id, 
-       sto.address_id, 
+       sto.address_id,
        sta.first_name, 
        adr.address,
        sto.last_update,
@@ -43,7 +43,10 @@ function verificarGerenteTienda($conexion, $datos)
 
 function eliminarTiendas($conexion, $datos)
 {
-    $sql = "DELETE FROM store WHERE store_id = :idTienda;";
+    $sql = "UPDATE staff SET store_id = 1 WHERE store_id = :idTienda;
+            UPDATE inventory SET store_id = 1 WHERE store_id = :idTienda;
+            UPDATE customer SET store_id = 1 WHERE store_id = :idTienda;
+            DELETE FROM store WHERE store_id = :idTienda;";
 
     return $conexion->prepare($sql)->execute($datos);
 }

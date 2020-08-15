@@ -11,7 +11,7 @@
         <div class="col-md-5">
             <h3><?php echo "$nombrePagina"; ?></h3>
             <div class="row">
-                <div class="col-md-12">
+                <div class="ani animated animate__bounceInLeft col-md-12">
                     <form class="lolo" action="pelicula.php" method="post">
                         <div class="mb-3">
                             <label for="tituloPelicula">Titulo de la Pelicula </label>
@@ -178,8 +178,8 @@
                                          <td>{$pelicula['special_features']}</td>
                                          <td>{$pelicula['fecha']}</td>   
                                          <td>
-                                             <button class='btn btn-outline-danger btn-sm' value='' name='eliminarPelicula' title='Eliminar'><i class='fas fa-trash'></i></button>
-                                             <button class='btn btn-outline-success btn-sm' value='' name='edictarPelicula' title='Editar'><i class='fas fa-edit'></i></button>
+                                             <button class='btn btn-outline-danger btn-sm' value='{$pelicula['film_id']}' name='eliminarPelicula' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                             <button class='btn btn-outline-success btn-sm' value='{$pelicula['film_id']}' name='edictarPelicula' title='Editar'><i class='fas fa-edit'></i></button>
                                              </td>   
                                      </tr>";
                     }

@@ -10,15 +10,18 @@
         <div class="col-md-10">
             <h3><?php echo "$nombrePagina"; ?></h3>
             <div class="row">
-                <div class="col-md-5">
+                <div class="ani animated animate__bounceInLeft col-md-5">
                     <form action="pais.php" method="post">
+                        <input type="hidden" name="idPais" value="<?= $idPais ?>">
                         <div class="mb-3">
                             <label for="pais">Tu pais</label>
-                            <input value="<?= $pais ?>" type="text" name="pais" id="pais" class="form-control">
+                            <input placeholder="Escribe un pais" value="<?= $pais ?>" type="text" name="pais" id="pais"
+                                   class="form-control">
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" name="guardar_pais" class="btn btn-primary"><i class="fas fa-save"> Enviar</i></button>
+                            <button type="submit" name="guardar_pais" class="btn btn-primary"><i class="fas fa-save">
+                                    Enviar</i></button>
                         </div>
                     </form>
                     <?php
@@ -69,7 +72,7 @@
                                                   <td>{$pais['country']}</td>
                                                   <td>
                                                   <button class='btn btn-outline-danger btn-sm' value='{$pais['country_id']}' name='eliminarPais' title='Eliminar'><i class='fas fa-trash'></i></button>
-                                                  <button class='btn btn-outline-success btn-sm' value='{$pais['country_id']}' name='edictarPais' title='Editar'><i class='fas fa-edit'></i></button>
+                                                  <button class='btn btn-outline-success btn-sm' value='{$pais['country_id']}' name='editarPais' title='Editar'><i class='fas fa-edit'></i></button>
                                                   </td>
                                               </tr>";
                                 }

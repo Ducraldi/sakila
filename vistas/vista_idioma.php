@@ -10,16 +10,20 @@
         <div class="col-md-10">
             <h3><?php echo "$nombrePagina"; ?></h3>
             <div class="row">
-                <div class="col-md-10">
+                <div class="ani animated animate__bounceInLeft col-md-10">
                     <form action="idioma.php" method="post">
+                        <input type="hidden" name="idIdioma" value="<?= $idIdioma ?>">
+
                         <div class="col-md-3">
                             <div class="mb-3">
                                 <label for="nombreIdioma">Buscar por el idioma</label>
-                                <input type="text" name="nombreIdioma" id="nombreIdioma" value="<?= $nombreIdioma ?>" class="form-control">
+                                <input type="text" placeholder="Escribe tu idioma" name="nombreIdioma" id="nombreIdioma"
+                                       value="<?= $nombreIdioma ?>" class="form-control">
                             </div>
 
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary" name="guardar_idioma"><i class="fas fa-save"> Enviar</i>
+                                <button type="submit" class="btn btn-primary" name="guardar_idioma"><i
+                                            class="fas fa-save"> Enviar</i>
                                 </button>
                             </div>
                         </div>
@@ -73,8 +77,8 @@
                                                   <td>" . ucwords(strtolower($lenguaje['name'])) . "  </td>  
                                                   <td>{$lenguaje['fecha']}</td>
                                                   <td>
-                                                  <button class='btn btn-outline-danger btn-sm' value='' name='eliminarIdioma' title='Eliminar'><i class='fas fa-trash'></i></button>
-                                                  <button class='btn btn-outline-success btn-sm' value='' name='edictarIdioma' title='Editar'><i class='fas fa-edit'></i></button>
+                                                  <button class='btn btn-outline-danger btn-sm' value='{$lenguaje['language_id']}' name='eliminarIdioma' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                                  <button class='btn btn-outline-success btn-sm' value='{$lenguaje['language_id']}' name='editarIdioma' title='Editar'><i class='fas fa-edit'></i></button>
                                                   </td>    
                                               </tr>";
                                 }

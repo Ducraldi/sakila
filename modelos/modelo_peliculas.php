@@ -49,7 +49,9 @@ function insertarPelículas($conexion, $datos)
 
 function eliminarPelicula($conexion, $datos)
 {
-    $sql = "DELETE FROM film WHERE film_id = :idPelicula;";
+    $sql = "UPDATE inventory SET film_id = 1 WHERE film_id = :idPelicula;
+            UPDATE film_actor SET film_id = 1 WHERE film_id = :idPelicula;
+            DELETE FROM film WHERE film_id = :idPelicula;";
 
     return $conexion->prepare($sql)->execute($datos);
 }

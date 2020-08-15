@@ -14,11 +14,12 @@ function obtenerPersonal($conexion)
        sta.active,
        IF (sta.active = 1, 'Si', 'No') AS activo,
        sta.username,
-       sta.password,                                               
+       sta.password,
+       sta.store_id,
        sta.last_update,                                            
        DATE_FORMAT(sta.last_update, '%d/%m/%Y %l%i:%p' ) AS fecha 
        FROM staff AS sta                                          
-        left join store AS sto  on sta.staff_id = sto.store_id    
+        left join store AS sto  on sta.store_id = sto.store_id    
         left join address AS ad on sta.address_id = ad.address_id;";
 
     return $conexion->query($sql)->fetchAll();
@@ -52,7 +53,8 @@ function intesertarPersonal($conexion, $datos)
 
 function eliminarPersonal($conexion, $datos)
 {
-    $sql = "DELETE FROM staff WHERE staff_id = :idPersonal;";
+    $sql = "UPDATE payment SET staff_id = 1 WHERE staff_id = :idPersonal ;
+            DELETE FROM staff WHERE staff_id = :idPersonal ;";
 
     return $conexion->prepare($sql)->execute($datos);
 }

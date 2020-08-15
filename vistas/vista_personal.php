@@ -10,16 +10,18 @@
         <div class="col-md-10">
             <h3><?php echo "$nombrePagina"; ?></h3>
             <div class="row">
-                <div class="col-md-5">
-                    <form  class="lolo" action="personal.php" method="post">
+                <div class="ani animated animate__bounceInLeft col-md-5">
+                    <form class="lolo" action="personal.php" method="post">
                         <div class="mb-3">
                             <label for="nombrePersonal">Nombre del Personal </label>
-                            <input value="<?= $nombrePersonal ?>" type="text" name="nombrePersonal" id="nombrePersonal"
+                            <input value="<?= $nombrePersonal ?>" placeholder="Escribe tu nombre" type="text"
+                                   name="nombrePersonal" id="nombrePersonal"
                                    class="form-control">
                         </div>
                         <div class="mb-3">
                             <label for="apellidoPersonal">Apellido del Personal</label>
-                            <input value="<?= $apellidoPersonal ?>" type="text" name="apellidoPersonal"
+                            <input value="<?= $apellidoPersonal ?>" placeholder="Escribe tu apellido" type="text"
+                                   name="apellidoPersonal"
                                    id="apellidoPersonal" class="form-control">
                         </div>
                         <div class="mb-3">
@@ -155,8 +157,8 @@
                               <td>{$personal['password']}</td>
                               <td>{$personal['fecha']}</td>
                               <td>
-                                  <button class='btn btn-outline-danger btn-sm' value='' name='eliminarPersonal' title='Eliminar'><i class='fas fa-trash'></i></button>
-                                  <button class='btn btn-outline-success btn-sm' value='' name='edictarPersonal' title='Editar'><i class='fas fa-edit'></i></button>
+                                  <button class='btn btn-outline-danger btn-sm' value='{$personal['staff_id']}' name='eliminarPersonal' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                  <button class='btn btn-outline-success btn-sm' value='{$personal['staff_id']}' name='edictarPersonal' title='Editar'><i class='fas fa-edit'></i></button>
                                   </td>
                           </tr>";
                     }

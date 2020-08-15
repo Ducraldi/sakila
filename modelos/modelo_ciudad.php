@@ -21,9 +21,28 @@ function insertarCiudades($conexion, $datos)
 
 function eliminarCiudades($conexion, $datos)
 {
-    $sql = "DELETE FROM city WHERE city_id = :idCiudad;";
+    $sql = "UPDATE address SET city_id = 1 WHERE city_id = :idCiudad;
+            DELETE FROM city WHERE city_id = :idCiudad;";
 
     return $conexion->prepare($sql)->execute($datos);
 }
 
+function obtenerCiudadPorId($conexion, $datos)
+{
 
+    $sql = "SELECT * FROM city WHERE city_id = :idCiudad;";
+
+    $query = $conexion->prepare($sql);
+
+    $query->execute($datos);
+
+    return $query->fetch();
+}
+
+function editarCiudades($conexion, $datos)
+{
+    $sql = "UPDATE city SET city = :ciudadPrincipal, country_id = :selecionPais 
+            WHERE city_id = :idCiudad ;";
+
+    return $conexion->prepare($sql)->execute($datos);
+}

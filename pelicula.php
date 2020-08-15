@@ -17,13 +17,12 @@ $longitudPelicula = $_POST['longitudPelicula'] ?? "";
 $clasificacionlPelicula = $_POST['clasificacionlPelicula'] ?? "";
 $especialPelicula = $_POST['especialPelicula'] ?? "";
 
-imprimirArray($_POST);
 // asegurarno del que usuario alga hecho click en el boton
 
 try {
     if (isset($_POST['guardar_pelicula'])) {
         // codigo para guarda base de datos
-        echo "se va a guardar los datos...";
+        // echo "se va a guardar los datos...";
         if (empty($tituloPelicula)) {
             throw new Exception("El titulo de la pelicula no puede estar vacio");
         }
@@ -53,8 +52,6 @@ try {
         $especialPelicula = implode(",", $especialPelicula);
 
         $datos = compact('tituloPelicula', 'descripcionPelicula', 'lenguajePelicula', 'precioPelicula', 'lanzamientoPelicula', 'remplazoPelicula', 'longitudPelicula', 'clasificacionlPelicula', 'especialPelicula');
-
-        imprimirArray($datos);
 
         $peliculaIncertado = insertarPelículas($conexion, $datos);
         $mensaje = "Los datos sean guardado correctamente";

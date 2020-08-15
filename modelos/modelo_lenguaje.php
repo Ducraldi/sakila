@@ -23,7 +23,28 @@ function insertarLenguaje($conexion, $datos)
 
 function eliminarLenguaje($conexion, $datos)
 {
-    $sql = "DELETE FROM language WHERE language_id = :idIdioma;";
+    $sql = "UPDATE film SET language_id = 1 WHERE language_id = :idIdioma;
+            DELETE FROM language WHERE language_id = :idIdioma;";
+
+    return $conexion->prepare($sql)->execute($datos);
+}
+
+function obtenerIdiomaPorId($conexion, $datos)
+{
+
+    $sql = "SELECT * FROM language WHERE language_id = :idIdioma;";
+
+    $query = $conexion->prepare($sql);
+
+    $query->execute($datos);
+
+    return $query->fetch();
+}
+
+function editarIdiomas($conexion, $datos)
+{
+    $sql = "UPDATE language SET name = :nombreIdioma
+            WHERE language_id = :idIdioma;";
 
     return $conexion->prepare($sql)->execute($datos);
 }

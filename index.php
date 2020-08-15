@@ -3,12 +3,8 @@ require_once "funciones/ayudante.php";
 
 // Inclluir modelos
 
-require_once "modelos/modelo_actor.php";
 
-$actores = obtenerActores($conexion);
-
-
-$nombrePagina = "Principal";
+$nombrePagina = "Inicio";
 
 
 /*

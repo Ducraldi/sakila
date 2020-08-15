@@ -1,10 +1,11 @@
 <?php
 require_once "modelos/modelo_lenguaje.php";
 require_once "funciones/ayudante.php";
-$nombrePagina = "Idioma";
+$nombrePagina = "Idiomas";
 
 
 // Desclar Variables
+$idIdioma = $_POST['idIdioma'] ?? "";
 $nombreIdioma = $_POST['nombreIdioma'] ?? "";
 
 // asegurarno del que usuario alga hecho click en el boton
@@ -12,7 +13,7 @@ $nombreIdioma = $_POST['nombreIdioma'] ?? "";
 try {
     if (isset($_POST['guardar_idioma'])) {
         // codigo para guarda base de datos
-        echo "se va a guardar los datos...";
+        // echo "se va a guardar los datos...";
 
         if (empty($nombreIdioma)) {
             throw new Exception("El idioma no puede estar vacio");
@@ -20,12 +21,23 @@ try {
         // para el array con lo datos
         $datos = compact('nombreIdioma');
 
-        $idiomaIncertado = insertarLenguaje($conexion, $datos);
-        $mensaje = "Los datos sean guardado correctamente";
+        if (empty($idIdioma)) {
+            $idiomaIncertado = insertarLenguaje($conexion, $datos);
+            $mensaje = "Los datos sean guardado correctamente";// lanzar un error si no se inserto correctamente
+            if (!$idiomaIncertado) {
+                throw new Exception("Ocurrio un error al insertar los datos de Lenguaje");
+            }
+        } else {
+            // Agregar el id al array datos
+            $datos['idIdioma'] = $idIdioma;
 
-        // lanzar un error si no se inserto correctamente
-        if (!$idiomaIncertado) {
-            throw new Exception("Ocurrio un error al insertar los datos de Lenguaje");
+            // Actualizar datos
+            $idiomaEditado = editarIdiomas($conexion, $datos);
+            $mensaje = "Los datos fueron editado correctamente";
+
+            if (!$idiomaEditado) {
+                throw new Exception("Ocurrio un error al editar los datos");
+            }
         }
 
         // Redicionar la pagina
@@ -53,6 +65,20 @@ try {
         }
         // Re-direccionar
         redireccionar("idioma.php");
+    }
+
+    if (isset($_POST['editarIdioma'])) {
+        $idIdioma = $_POST['editarIdioma'] ?? "";
+
+        if (empty($idIdioma)) {
+            throw new Exception("el id del Actor no puede estar vacio");
+        }
+
+        $datos = compact('idIdioma');
+
+        $resultado = obtenerIdiomaPorId($conexion, $datos);
+        $nombreIdioma = $resultado['name'];
+
     }
 
 

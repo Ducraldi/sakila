@@ -23,7 +23,28 @@ function insertarCategoria($conexion, $datos)
 
 function eliminarCategoria($conexion, $datos)
 {
-    $sql = "DELETE FROM category WHERE category_id = :idCategoria;";
+    $sql = "UPDATE film_category SET category_id = 1 WHERE category_id = :idCategoria;
+            DELETE FROM category WHERE category_id = :idCategoria;";
+
+    return $conexion->prepare($sql)->execute($datos);
+}
+
+function obtenerCategoriaPorId($conexion, $datos)
+{
+
+    $sql = "SELECT * FROM category WHERE category_id = :idCategoria;";
+
+    $query = $conexion->prepare($sql);
+
+    $query->execute($datos);
+
+    return $query->fetch();
+}
+
+function editarCategorias($conexion, $datos)
+{
+    $sql = "UPDATE category SET name = :nombreCategoria 
+            WHERE category_id = :idActor ;";
 
     return $conexion->prepare($sql)->execute($datos);
 }

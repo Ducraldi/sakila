@@ -11,7 +11,7 @@
             <h3><?php echo "$nombrePagina"; ?></h3>
 
             <div class="row">
-                <div class="col-md-5">
+                <div class="ani animated animate__bounceInLeft col-md-5">
                     <form action="tienda.php" method="post">
                         <div class="mb-3">
                             <label for="gerenteTienda">Personal de la tienda</label>
@@ -99,8 +99,8 @@
                                                   <td>{$tienda['address']}</td>
                                                   <td>{$tienda['fecha']}</td>
                                                   <td>
-                                                      <button class='btn btn-outline-danger btn-sm' value='' name='eliminarTienda' title='Eliminar'><i class='fas fa-trash'></i></button>
-                                                      <button class='btn btn-outline-success btn-sm' value='' name='edictarTienda' title='Editar'><i class='fas fa-edit'></i></button>  
+                                                      <button class='btn btn-outline-danger btn-sm' value='{$tienda['store_id']}' name='eliminarTienda' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                                      <button class='btn btn-outline-success btn-sm' value='{$tienda['store_id']}' name='edictarTienda' title='Editar'><i class='fas fa-edit'></i></button>  
                                                   </td>
                                               </tr>";
                                 }

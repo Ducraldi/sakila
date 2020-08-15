@@ -11,7 +11,7 @@
         <div class="col-md-10">
             <h3><?php echo "$nombrePagina"; ?></h3>
             <div class="row">
-                <div class="col-md-5">
+                <div class="ani animated animate__bounceInLeft col-md-5">
                     <form class="lolo" action="cliente.php" method="post">
                         <div class="mb-3">
                             <label for="nombreCliente">Nombre del Clinte</label>
@@ -130,15 +130,15 @@
                                     }
                                     echo "<tr class=\"bg-secondary\">
                                                   <th scope=\"row\">{$cliente['customer_id']}</th>
-                                                  <td>{$cliente['manager_staff_id']}</td>
+                                                  <td>{$cliente['store_id']}</td>
                                                   <td>" . ucwords(strtolower($cliente['name'])) . "</td>
                                                   <td>{$cliente['email']}</td>
                                                   <td>{$cliente['address']}</td>
                                                   <td>{$cliente['activo']} {$icono}</td>
                                                   <td>{$cliente['fecha']}</td>
                                                   <td>
-                                                  <button class='btn btn-outline-danger btn-sm' value='' name='eliminarCliente' title='Eliminar'><i class='fas fa-trash'></i></button>
-                                                  <button class='btn btn-outline-success btn-sm' value='' name='edictarCliente' title='Editar'><i class='fas fa-edit'></i></button>
+                                                  <button class='btn btn-outline-danger btn-sm' value='{$cliente['customer_id']}' name='eliminarCliente' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                                  <button class='btn btn-outline-success btn-sm' value='{$cliente['customer_id']}' name='edictarCliente' title='Editar'><i class='fas fa-edit'></i></button>
                                                   </td>
                                               </tr>";
                                 }

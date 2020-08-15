@@ -3,10 +3,11 @@ require_once "funciones/ayudante.php";
 require_once "modelos/modelo_cliente.php";
 require_once "modelos/modelo_personal.php";
 require_once "modelos/modelo_direcciones.php";
+require_once "modelos/modelo_tiendas.php";
 $nombrePagina = "Clientes";
 
 // Incluid los modelos
-require_once "modelos/modelo_tiendas.php";
+
 
 
 $nombreCliente = $_POST['nombreCliente'] ?? "";
@@ -21,13 +22,12 @@ if (isset($_POST['activadorCliente'])) {
 }
 
 
-imprimirArray($_POST);
 // asegurarno del que usuario alga hecho click en el boton
 
 try {
     if (isset($_POST['guardar_cliente'])) {
         // codigo para guarda base de datos
-        echo "se va a guardar los datos...";
+        // echo "se va a guardar los datos...";
 
         // vamos a insertar
         if (empty($nombreCliente)) {

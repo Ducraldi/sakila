@@ -10,30 +10,33 @@
         <div class="col-md-10">
             <h3><?php echo "$nombrePagina"; ?></h3>
             <div class="row">
-                <div class="col-md-5">
+                <div class=" ani animated animate__bounceInLeft  col-md-5">
                     <form action="direcciones.php" method="post">
                         <div class="mb-3">
                             <label for="direccionPrincipal">Tu Direccion Principal </label>
                             <input value="<?= $direccionPrincipal ?>" type="text" name="direccionPrincipal"
-                                   id="direccionPrincipal" class="form-control">
+                                   id="direccionPrincipal" placeholder="Escribe tu direccion principal"
+                                   class="form-control">
                         </div>
 
                         <div class="mb-3">
                             <label for="direccionSecundaria">tu Direccion Secundaria </label>
                             <input value="<?= $direccionSecundaria ?>" type="text" name="direccionSecundaria"
-                                   id="direccionSecundaria" class="form-control">
+                                   id="direccionSecundaria" placeholder="Escribe tu direccion secundaria"
+                                   class="form-control">
                         </div>
 
                         <div class="mb-3">
                             <label for="distrito">Tu Distrito </label>
-                            <input value="<?= $distrito ?>" type="text" name="distrito" id="distrito"
+                            <input value="<?= $distrito ?>" placeholder="Escribe tu distrito" type="text"
+                                   name="distrito" id="distrito"
                                    class="form-control">
                         </div>
 
                         <div class="mb-3">
                             <label for="ciudad">Tu Ciudad </label>
                             <select name="ciudad" id="ciudad" class="custom-select">
-                                <option value="<?= $ciudad ?>">Aqui va el listado de la ciudad dede SQL</option>
+                                <option value="<?= $ciudad ?>">Seleccione una Ciudad</option>
                                 <?php
                                 foreach ($ciudades as $ciudad) {
                                     echo "<option value=\"{$ciudad["city_id"]}\">{$ciudad["city"]}</option>";
@@ -44,13 +47,15 @@
 
                         <div class="mb-3">
                             <label for="codigoPostal">Tu codigo Postal </label>
-                            <input value="<?= $codigoPostal ?>" type="text" name="codigoPostal" id="codigoPostal"
+                            <input value="<?= $codigoPostal ?>" placeholder="Escribe tu codigo postal" type="text"
+                                   name="codigoPostal" id="codigoPostal"
                                    class="form-control">
                         </div>
 
                         <div class="mb-3">
                             <label for="telefono">Tu Nunmero de Telefono </label>
-                            <input value="<?= $telefono ?>" type="text" name="telefono" id="telefono"
+                            <input value="<?= $telefono ?>" type="text" placeholder="Escribe tu telefono"
+                                   name="telefono" id="telefono"
                                    class="form-control">
                         </div>
 
@@ -112,13 +117,13 @@
                                               <th scope=\"row\">{$direcciones['address_id']}</th>      
                                               <td>{$direcciones['address']}</td>
                                               <td>{$direcciones['address2']}</td>
-                                              <td>{$direcciones['district']}</td>
+                                              <td>" . ucwords(strtolower($direcciones['district'])) . "</td>
                                               <td>{$direcciones['city_id']}</td>
                                               <td>{$direcciones['postal_code']}</td>
                                               <td>{$direcciones['phone']}</td>
                                               <td>
-                                  <button class='btn btn-outline-danger btn-sm' value='{$direcciones['address_id']}' name='eliminarDirecion' title='Eliminar'><i class='fas fa-trash'></i></button>
-                                  <button class='btn btn-outline-success btn-sm' value='{$direcciones['address_id']}' name='edictarDirecion' title='Editar'><i class='fas fa-edit'></i></button>
+                                  <button class='btn btn-outline-danger btn-sm' value='{$direcciones['address_id']}' name='eliminarDireccion' title='Eliminar'><i class='fas fa-trash'></i></button>
+                                  <button class='btn btn-outline-success btn-sm' value='{$direcciones['address_id']}' name='edictarDireccion' title='Editar'><i class='fas fa-edit'></i></button>
                                   </td>                
                                           </tr>";
                         }
